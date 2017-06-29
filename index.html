@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://yoursite.com/index.html">
+<meta property="og:url" content="https://github.com/guozilin/guozilin.github.io/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
@@ -274,11 +274,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-文章标题" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="[post]-typescript-参数" class="article article-type-[post]" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2017/06/29/文章标题/" class="article-date">
-      <time datetime="2017-06-29T03:59:01.000Z" itemprop="datePublished">2017-06-29</time>
+      <a  href="/2017/06/29/typescript-参数/" class="article-date">
+      <time datetime="2017-06-29T06:45:06.000Z" itemprop="datePublished">2017-06-29</time>
 </a>
 
     </div>
@@ -292,7 +292,73 @@
         
   
     <h1 itemprop="name">
-      <a  class="article-title" href="/2017/06/29/文章标题/">文章标题</a>
+      <a  class="article-title" href="/2017/06/29/typescript-参数/">typescript-参数</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="参数新特性"><a href="#参数新特性" class="headerlink" title="参数新特性"></a>参数新特性</h1><h3 id="1、参数类型检查"><a href="#1、参数类型检查" class="headerlink" title="1、参数类型检查"></a>1、参数类型检查</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let myname: string = &apos;guozilin&apos;;</div><div class="line">myname = 21;</div></pre></td></tr></table></figure>
+<p>myname 在ts里面会编译报错 因为myname被指定为string型</p>
+<p>类型推断<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let hisage = 39;</div><div class="line">hisage = &apos;39&apos;</div></pre></td></tr></table></figure></p>
+<p>hisage=’39’编译报错，ts类型推断在第一次会给其指定数据类型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let a :any = &apos;123&apos;;</div><div class="line">a = 123;</div><div class="line">//不报错，any</div></pre></td></tr></table></figure></p>
+<p>void类型 指定方法的返回值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function hello():void&#123;</div><div class="line">    return &quot; &quot;</div><div class="line">&#125;</div><div class="line">//报错 void 指的是方法没有返回值</div></pre></td></tr></table></figure></p>
+<p>指定方法返回值类型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function getName(name: string): string&#123;</div><div class="line">    return name</div><div class="line">&#125;</div><div class="line">//这里返回值是string</div></pre></td></tr></table></figure></p>
+<p>自定义类型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">class Person &#123;</div><div class="line">    name: string;</div><div class="line">    age: number;</div><div class="line">&#125;</div><div class="line">let zhangsan: Person = new Person();</div><div class="line">zhangsan.name = &apos;zhangsan&apos;;</div><div class="line">zhangsan.age = 22;</div></pre></td></tr></table></figure></p>
+<p>给方法的参数指定默认值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function getAge(a:string,b:string,c:string=&apos;jojo&apos;)&#123;</div><div class="line">    console.log(a);</div><div class="line">    console.log(b);</div><div class="line">    console.log(c);</div><div class="line">&#125;</div><div class="line">// 方法调用</div><div class="line">getAge(&apos;x&apos;,&apos;y&apos;,&apos;z&apos;);</div><div class="line">// x,y,z</div><div class="line">getAge(&apos;x&apos;,&apos;y&apos;);</div><div class="line">//x, y, jojo</div><div class="line">// 带默认值的参数声明在最后面</div></pre></td></tr></table></figure></p>
+<p>可选参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function getAge(a:string,b?:string,c:string=&apos;jojo&apos;)&#123;</div><div class="line">    console.log(a);</div><div class="line">    console.log(b);</div><div class="line">    console.log(c);</div><div class="line">&#125;</div><div class="line">getAge(&apos;x&apos;);</div><div class="line">// x , undefind,jojo;</div><div class="line">//可选参数不能在必选参数后面</div><div class="line">// 注意要处理可选参数在不传的时候 </div><div class="line">// 如果不传b参数，却输出b.length则报错</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="[post]-webpack入门" class="article article-type-[post]" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2017/06/29/webpack入门/" class="article-date">
+      <time datetime="2017-06-29T06:42:49.000Z" itemprop="datePublished">2017-06-29</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2017/06/29/webpack入门/">webpack入门</a>
     </h1>
   
 
@@ -360,7 +426,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
