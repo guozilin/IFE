@@ -1,0 +1,16 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "webpack test demo study",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --config webpack.dev.config.js --progress --display-modules --colors --display-reasons"
+  },
+  "author": "guozl",
+  "license": "ISC",
+  "repository": "https://github.com/guozilin/guozilin.github.io.git",
+  "devDependencies": {
+    "html-webpack-plugin": "^2.30.1",
+    "webpack": "^3.5.6"
+  }
+}
