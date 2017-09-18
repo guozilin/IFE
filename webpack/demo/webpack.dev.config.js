@@ -1,6 +1,7 @@
 console.log(__dirname,__filename);
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+let path = require('path');
 module.exports = {
     entry: {
         index : './src/index.js',
@@ -28,5 +29,13 @@ module.exports = {
             age: 26,
             hash: true
         }
-    )]
+    )],
+    module:{
+        rules: {
+            test: /\.js$/,
+            exclude: /(node_modules)/,
+            include: [path.resolve(__dirname,'src')],
+            use: {loader: 'babel-loader'}
+        }
+    }
 };
