@@ -6,7 +6,7 @@ module.exports = {
     entry: {
         index : './src/index.js',
         demo : './src/demo.js',
-        config : './libs/config.ts'
+        config : './libs/config.js'
     }, //入口文件
     output: {
         path: __dirname + '/dist',
@@ -39,10 +39,13 @@ module.exports = {
             include: [path.resolve(__dirname,'src')],
             use: {loader: 'babel-loader'}
         },{
-            test: /\.ts$/,
+            test: /\.js$/,
             exclude: /(node_modules)/,
             include: [path.resolve(__dirname,'src')],
-            use: {loader: 'babel-loader'}
+            use: {loader: 'babel-loader',}
+        },{
+            test: /\.css$/,
+            use:{loader: "css-loader"}//添加对样式表的处理
         }]
     }
 };
