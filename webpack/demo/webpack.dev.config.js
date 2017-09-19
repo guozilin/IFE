@@ -5,7 +5,8 @@ let path = require('path');
 module.exports = {
     entry: {
         index : './src/index.js',
-        demo : './src/demo.js'
+        demo : './src/demo.js',
+        config : './libs/config.ts'
     }, //入口文件
     output: {
         path: __dirname + '/dist',
@@ -27,15 +28,21 @@ module.exports = {
             date: '2017-09-14 14:43:10',
             userName: 'guozl',
             age: 26,
-            hash: true
+            hash: true,
+            chunks: ['index','config']
         }
     )],
     module:{
-        rules: {
+        rules: [{
             test: /\.js$/,
             exclude: /(node_modules)/,
             include: [path.resolve(__dirname,'src')],
             use: {loader: 'babel-loader'}
-        }
+        },{
+            test: /\.ts$/,
+            exclude: /(node_modules)/,
+            include: [path.resolve(__dirname,'src')],
+            use: {loader: 'babel-loader'}
+        }]
     }
 };

@@ -60,18 +60,25 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */,
-/* 1 */
-/***/ (function(module, exports) {
+/******/ ({
 
-function getNum() {
-    console.log(window.URLSearchParams);
+/***/ 2:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (immutable) */ __webpack_exports__["GetAllFunctions"] = GetAllFunctions;
+
+
+function GetAllFunctions(){
+    return {
+        getOne : console.log(123),
+    }
 }
-getNum();
 
 /***/ })
-/******/ ]);
+
+/******/ });
