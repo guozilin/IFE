@@ -22,8 +22,10 @@
 
 ### 超链接
 
-> 示例： [Markdown 语法说明](http://wowubuntu.com/markdown/) `[]()`
+> 示例： [Markdown 语法说明](http://wowubuntu.com/markdown/)
+`[]()`
 > []中括号 超链接文字 ()圆括号超链接地址
+>
 > <http://example.com/>
 
 - oo
@@ -32,7 +34,5 @@
 + pp
 
 [![图片](https://gold-cdn.xitu.io/v3/static/img/frontend.278a758.png)](http://www.diycode.cc/wiki/encouragement)
-
-hello[^hello]
 
 > 参考文档： [Markdown 语法说明](http://wowubuntu.com/markdown/)
