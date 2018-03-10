@@ -75,6 +75,39 @@
 
 ### 位置方法
 ```
-    
-    xx.indexof()
+    xx.indexof() 从头向后找
+    xx.lastIndexOf() 从最后向前找
+    均接受两个参数 一必填，数组中是否包含某一项，有返回索引，无则返回-1
+```
+### 迭代方法
+
+```
+    let arr = [1,2,3,4]
+    let ev = arr.every((item,index,arr) => item > 2)
+    如果数组每一项都大于2则返回true 反之返回false
+
+    let  so = arr.some((item,index,arr) => item ==3 )
+    数组中只要有一项满足条件 即返回true，均不满足返回false
+
+    let fl = arr.filter((item,index,arr) => item > 2)
+    返回一个满足条件的新数组
+
+    let ma = arr.map( (item,index,arr) => item * 2 )
+    返回一个新数组，适用于两个数组一一对应的时候
+
+    arr.forEach((item,index,arr)=>{console.log(item,index,arr)})
+    与for循环一样使用
+
+```
+
+### 归并方法
+```
+    let a = [1,2,3,4];
+    let b = a.reduce((prev,cur,index,arr) => prev + cur)
+    b = 1 + 2 + 3 + 4
+    reduce(),reduceRight()
+    let c = a.reduceRight((prev,cur,index,arr) => prev + cur, 10)
+    4个参数，前一个值，当前值，当前索引，数组本身
+    c = 10 + 1 + 2 + 3 + 4
+
 ```
