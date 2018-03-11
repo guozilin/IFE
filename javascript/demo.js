@@ -1,39 +1,17 @@
-console.log(1)
-// setTimeout(function(){
-//     alert(99999)
-// },1800)
-
-var nb = '12345';
-nb.age =27;
-// alert(nb.age)
-
-var a = new Object()
-
-b =a 
-
-a.my = 'guoz'
-
-// console.log(a,b
-
-function addTen(num){
-    num += 10
-    return num;
+'use strict';
+function sum(a,b){
+    return a + b
 }
 
-var count = 20;
 
-var re = addTen(count);
-console.log(count,re);
-
-function setName(obj){
-    obj.name = 'NIcky';
-    obj = new Object()
-    obj.name = 'GRP'
+function callSum(num1,num2){
+    console.log(this)
+    return sum.apply(this,[num1,num2])
+}
+function callSum2(num1,num2){
+    console.log(this)
+    return sum.apply(this,arguments)
 }
 
-var p = new Object()
-
-setName(p)
-console.log(p)
-
-
+console.log(callSum(10,2))
+console.log(callSum2(10,4))
