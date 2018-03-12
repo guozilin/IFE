@@ -37,4 +37,3 @@ max = Math.max.apply(Math,val) => 5
 ```
     Math.abs(-1) = 1
 ```
-
