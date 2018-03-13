@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>面向对象的程序设计--Object-Oriented</title>
+</head>
+<body>
+
+    <h2>属性类型</h2>
+    <h4>数据属性</h4>
+    <blockquote>
+        [[Configurable]] 能否通过delete删除属性，能否被修改，默认值true
+        <br>
+        [[Enumberable]] 能否通过for...in 循环返回属性
+        <br>
+        [[Writable]] 能否修改属性的值
+        <br>
+        [[Value]] 属性的数据值 ，写入属性的时候默认值为undefined
+    </blockquote>
+
+    <p>修改默认属性必须使用 Object.defineProperty()</p>
+
+    <script>
+        'use strict';
+        var person = new Object();
+        Object.defineProperty(person,'name',{
+            writable: false,
+            value: 'mark'
+        })
+        Object.defineProperty(person,'age',{
+            configurable: false,
+            value: '27'
+        })
+        // person.name = "Tracy"; // Cannot assign to read only property 'name' of objec  
+        // delete person.age  //  Cannot delete property 'age' of #<Object>
+        console.log(person)
+
+        Object.defineProperties(person,{
+            name:{
+                writable: false,
+                value: 'mark'
+            },
+            fullname:{
+                get: function(){
+                    return this.name + ' Tracy'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
