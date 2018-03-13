@@ -100,4 +100,63 @@ desc.configurable => false
 ```
 
 ## 创建对象
+**1. 工厂模式**
 
+主要解决了创建多个相思病对象的问题
+```
+function createPerson(name,age,job){
+    var o = new Object()
+    o.name = name
+    o.age = age
+    o.job = job
+    o.say = function(){
+        console.log(this.name)
+    }
+}
+var person1 = createPerson('tracy','27','engineer')
+var person2 = createPerson('tracy2','37','doctor')
+typeof(person1) => undefined 
+无法判断一个对象的类型
+```
+
+**2. 构造函数模式**
+- 没有显式的创建对象
+- 直接将属性方法赋予this
+- 没有return语句
+
+```
+function Person(name,age,job){
+    this.name = name
+    this.age = age
+    this.job = job
+    this.say = function(){
+        console.log(this.name)
+    }
+}
+var person1 = new Person('tracy','27','doctor')
+```
+每个new操作符 都会经历下面四步
+- 创建一个对象
+- 将构造函数的作用域赋予新对象
+- 执行构造函数的代码
+- 返回新对象
+
+person1 instanceof Object => true
+
+person instanceof Person => true
+
+    构造函数当作普通函数调用
+    Person('tracy','27','worker') => window.say() => 'tracy'
+    var o = new Object()
+    Person.call(o,'mark','27','worker') => o.say() => 'mark'
+
+**3. 原型模式** --prototype
+
+
+**4. 组合构造函数与原型模式**
+
+**5. 动态原型模式**
+
+**6. 寄生构造函数模式**
+
+**7. 稳妥构造函数模式**
