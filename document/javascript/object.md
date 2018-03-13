@@ -152,6 +152,24 @@ person instanceof Person => true
 
 **3. 原型模式** --prototype
 
+- 创建的每个函数都有一个prototype属性 
+- 该属性是一个指针，只指向一个对象
+- 该对象包含了所有实例共享的属性和方法
+- 原型可以让所有的实例共享它包含的属性和方法
+```
+function Person(){}
+Person.prototype.name = 'tracy'
+Person.prototype.age = 27
+Person.prototype.job = 'doctor'
+Person.prototype.say = function(){
+    console.log(this.name)
+}
+var person1 = new Person() 
+var person2 = new Person() 
+person1.say() == person2.say() //true tracy
+```
+[理解原型-prototype]()
+
 
 **4. 组合构造函数与原型模式**
 
