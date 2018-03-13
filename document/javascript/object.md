@@ -168,7 +168,7 @@ var person1 = new Person()
 var person2 = new Person() 
 person1.say() == person2.say() //true tracy
 ```
-[理解原型-prototype]()
+[理解原型-prototype](https://github.com/guozilin/guozilin.github.io/blob/master/document/javascript/prototype.md)
 
 
 **4. 组合构造函数与原型模式**
