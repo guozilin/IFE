@@ -145,3 +145,26 @@ Object.defineProperty(Friend.prototype,'constructor',{
     value: Friend
 })
 ```
+
+#### 原型的动态性
+
+- 先创建实例，再去改写原型中的方法，在实例中依旧可以访问到新的方法
+```
+var kevi = new Friend()
+Friend.prototype.hi = {
+    console.log('hi')
+}
+kevi.hi() => 'hi'
+```
+
+- 先创建实例，再去改写原型对象，则会切断构造函数与最初原型的联系
+```
+var kk = new Friend();
+Friend.prototype = {
+    constructor: Friend,
+    name: 'kk',
+    age: 30
+}
+kk.say() // error
+实例中的指针仅指向原型，而不是指向构造函数
+```
