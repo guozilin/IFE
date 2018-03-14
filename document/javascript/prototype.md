@@ -168,3 +168,35 @@ Friend.prototype = {
 kk.say() // error
 实例中的指针仅指向原型，而不是指向构造函数
 ```
+
+#### 原生对象的原型
+
+- 例如： Array.prototype.push(),String.prototype.subString()...
+- 可以在原生对象的原型中修改或者添加方法
+```
+String.prototype.sayHello = function(){
+    console.log('hello')
+}
+var str = 'dog';
+str.sayHello() => 'hello'
+```
+- 一般情况下，不建议修改原生对象的原型
+
+#### 原型对象的问题
+
+- 所有的实例都会默认取得所有的相同的属性和方法
+- 当属性中包含一个引用类型值的时候，修改实例中的值，则会影响到所有的实例
+```
+function P(){}
+P.prototype = {
+    constructor: P,
+    name: 'ppp'
+    firends: ['ooo','qqq']
+}
+var p1 = new P()
+var p2 = new P()
+p1.friends.push('sss'),
+console.log(p2.friends) => ['ooo','qqq','sss']
+p1.friends === p2.friends => true
+```
+- 一般情况下，很少单独使用原型模式创建对象
