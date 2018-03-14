@@ -90,4 +90,58 @@ person1.name = 'mark'
 hasPrototypeProperty(person1,'name') => false;
 hasPrototypeProperty(person1,'age') => true;
 ```
-- for...in 可没举出
+- for...in 可枚举出对象实例，原型中所有的可枚举的，可通过对象访问的属性
+```
+for(key in person1){
+    console.log(key) => name,age,job,say()
+}
+不可枚举的属性和方法有：toSting(),hasOwnProperty(),propertyIsEnumberable(),toLocaleString(),valueOf()
+ES6新增：constructor,prototype,(并不是所有浏览器均实现)
+```
+- 获取对象实例中所有的可枚举属性-- Object.keys()
+```
+var keys = Object.keys(Person.prototype) => [name,age,job,say] // 原型中的可枚举属性
+var person1 = new Person() 
+var p1Keys = Object.keys(person1) => [] // 该实例中并没有属性
+person1.name = 'mark'
+var p2Keys = Object.keys(person1) => ['name'] // 该实例中实现了一个 name 属性
+```
+
+#### 更简单的原型语法
+```
+function Friend(){}
+Friend.prototype = {
+    name: 'tracy',
+    age: 27,
+    job: 'doctor',
+    say: function(){
+        console.log(this.name)
+    }
+}
+```
+- 优点：代码更少更精简
+- 缺点： constructor 属性不再指向 Friend（因为每创建一个函数，同时也会创建它的 constructor 属性）
+```
+var jojo = new Friend()
+jojo instanceof Object => true
+jojo instanceof Friend => true
+jojo.constructor  => Object
+```
+- 通过指定 constructor 属性可以确保该属性能访问到正确的值
+```
+Friend.prototype = {
+    constructor: Friend,
+    ...
+}
+该操作会重置 constructor属性，导致它的[[Enumberable]] 变为 true,原生的 constructor 是不可以枚举的
+var jo = new Friend()
+for(key in jo){
+    console.log(k)
+    // constructor,name,job,age,say
+}
+当然可以通过ES6的方法设置 constructor 属性为不可枚举类型
+Object.defineProperty(Friend.prototype,'constructor',{
+    enumberable: false,
+    value: Friend
+})
+```
