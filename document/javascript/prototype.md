@@ -71,3 +71,23 @@ person2.hasOwnProperty('name') => false // name属性在原形对象中
 ```
 
 #### 原型与in操作符
+- in 单独使用 in 操作符会在通过对象能够访问给定属性时返回true，无论该属性存在于实例中还是原型中。
+```
+var person1 = new Person();
+person1.name = 'mark'
+'name' in person1 => true // 来自实例
+var person2 = new Person()
+'name' in person2 => true // 来自原型
+
+```
+- in 与 hasOwnProperty() 一起使用可以判断属性是不是来自于原型
+```
+function hasPrototypeProperty(object,name){
+    return !object.hasOwnProperty(name) && (name in object)
+}
+var person1 = new Person();
+person1.name = 'mark'
+hasPrototypeProperty(person1,'name') => false;
+hasPrototypeProperty(person1,'age') => true;
+```
+- for...in 可没举出
