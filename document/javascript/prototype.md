@@ -22,20 +22,52 @@ person1.say() == person2.say() //true tracy
 - Person 的两个实例均不包含属性和方法，但仍然可以调用 person1.name
 - 这是通过属性查找实现的
 
-**isPrototype()**
+#### isPrototype()
 
 - 通过该方法确定实例与对象之间是否存在某种关系
 - Person.prototype.isPrototypeOf(person1) => true
 - 这个描述该怎么说清楚？
 
-**getPrototypeOf()**
+#### getPrototypeOf()
+
 - Object.getPrototypeOf(person1) == Person.prototype => true
 - 该方法返回的对象实际上就是这个对象的原型
 - 直接获取到属性的值 Object.getPrototypeOf(person1).name => 'tracy'
 
 #### 当代码读到某个对象的属性时，都会执行一次搜索，目标是给定的属性名字
+
 - 首先会在实例本身中搜索，是否包含给定属性，如果有则返回该属性的值，停止搜索
 - 如果在实例中没有找到该属性，则会在指针指向的原型对象中继续查找给定的属性名
 - 这是多个对象实例共享原型所保存属性和方法的基本原理
 
 #### 通过对象实例可以访问保存在原型中的值，但不可以通过对象实例改写原型中的值
+
+- 如果在实例中添加一个与原型中相同的属性，实例的属性值会覆盖原型中的属性值
+```
+person1 = new Person();
+person2 = new Person();
+person1.name = 'mark';
+person1.say() => 'mark' // 并不会改变原型中的属性值
+person2.say() => 'tracy'
+```
+- 使用delete 操作符则可以完全删除实例属性，从而让我们能够重新访问原型中的属性
+```
+person1 = new Person();
+person1.name = 'mark';
+person1.name = null;
+person1.say() => null
+delete person1.name 
+person1.say() => 'tracy'; // 访问原型中的值
+```
+
+#### hasOwnProperty()
+- 使用hasOwnProperty()方法可以检测一个属性是存在于实例中，还是存在于原型中。只有存在实例中才会返回true
+```
+person1 = new Person();
+person1.name = 'mark';
+person2 = new Person();
+person1.hasOwnProperty('name') => true // 实例具备name属性
+person2.hasOwnProperty('name') => false // name属性在原形对象中
+```
+
+#### 原型与in操作符
