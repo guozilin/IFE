@@ -100,9 +100,9 @@ desc.configurable => false
 ```
 
 ## 创建对象
-#### 1. 工厂模式
+#### <span id="factory">1. 工厂模式</span>
 
-主要解决了创建多个相思病对象的问题
+主要解决了创建多个相似对象的问题
 ```
 function createPerson(name,age,job){
     var o = new Object()
@@ -173,9 +173,93 @@ person1.say() == person2.say() //true tracy
 
 #### 4. 组合构造函数与原型模式
 
+- 构造函数模式用于创建实例属性，原型模式用于创建公用的属性和方法
+```
+function Person(name,age,job){
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    this.friends = ['tracy','alice']
+}
+Person.prototype = {
+    constructor: Person,
+    say: function(){
+        sonsole.log(this.name)
+    }
+}
+var p1 = new Person('koko',27,'doctor');
+var p2 = new Person('jojo',26,'worker');
+p1.friends.push('linky')
+console.log(p2.friends); => ['tracy','alice']
+p1.friends === p2.friends => false
+p1.say() === p2.say() => true
+```
+- 使用最广泛、认同度最高的一种创建自定义类型的方法
+
 
 #### 5. 动态原型模式
 
+```
+function Person(name, age, job){
+　　//属性
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    //方法 仅会在需要时运行一次，一般是第一次运行时
+    if (typeof this.sayName != "function"){
+        Person.prototype.sayName = function(){
+            alert(this.name);
+        };
+    }
+}
+var friend = new Person("Nicholas", 29, "Software Engineer");
+friend.sayName();
+friend.sayName();
+ // 第二次运行的时候，this指向的实例对象的原型已经有了sayName方法
+```
+
 #### 6. 寄生构造函数模式
 
+- 该方法与[工厂模式](#factory)类似，通过在结尾加一个return重写调用构造函数的返回值
+```
+function Person(name,age,job){
+    var o = new Object();
+    o.name = name;
+    o.age = age;
+    o.job = job;
+    o.say = function(){
+        console.log(this.name)
+    }
+    return o
+}
+```
+- 可用于不改变原始对象构造函数的情况下，增加额外的处理方法
+```
+function SpecialArray(){
+    var arr = new Array();
+    arr.push.apply(arr,arguments);
+    arr.toPipedString = function(){
+        return this.arr.join('|')
+    }
+    return arr
+}
+var colors = new SpecialArray("red", "blue", "green");
+colors.toPipedString() => 'red|blue|green'
+```
+- 问题一： 返回的对象与构造函数或者与构造函数的原型属性之间没有关系
+- 问题二： 不能依赖instanceof 操作符来确定对象类型
+- 注： 不建议使用
+
 #### 7. 稳妥构造函数模式
+
+- 没有公共属性
+- 不引用 this 的对象
+```
+function Person(name,age,job){
+    var o = new Object();
+    o.say = function(){
+        console.log(name)
+    }
+    return o
+}
+```
