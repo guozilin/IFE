@@ -99,7 +99,7 @@ cat.age = 27
 - 问题2：超类型中定义的方法，在子类型中是不可见的，结果是所有的类型都必须使用构造函数模式
 - 注： 很少单独使用 借用构造函数实现继承
 
-## 组合继承
+## <span id="group_inherit">组合继承</span>
 
 - 原型链与借用构造函数相结合
 - 使用原型链实现属性和方法的继承，通过借用构造函数实现对实例属性的继承
@@ -113,11 +113,11 @@ Super.prototype.say = function(){
 }
 // 继承属性
 function Sub(name,age){
-    Super.call(this,name);
+    Super.call(this,name); // 第二次调用
     this.age = age
 }
 // 继承方法
-Sub.prototype = new Super('tracy',27)
+Sub.prototype = new Super('tracy',27)  //第一次调用
 Sub.prototype.constructor = Sub
 Sub.prototype.sayAge = function(){
     console.log(this.age)
@@ -128,5 +128,77 @@ p1.say() => 'tracy'
 p1.sayAge() => 27
 ```
 - javascript 中最常用的继承模式
+- 缺点： 无论在什么情况下，都会调用两次超类型构造函数
 
 ## 原型式继承
+
+- 通过已有的对象创建新对象，将传入的对象作为新构造函数的原型，最后返回这个临时类型的实例
+```
+function Obj(o){
+    function F(){}
+    F.prototype = o
+    return new F()
+}
+```
+- 通过Object.create()方法实现原型式继承
+```
+传一个参数时与 Obj 一样
+var person = {
+    name: 'tracy',
+    age: 27
+}
+var p = Object.create(person)
+console.log(p)
+传递两个参数时：
+var p2 = Object.create(person,{
+    name: {
+        value: 'mark'
+    },
+    age: {
+        value: 28
+    }
+})
+```
+- 注： 包含引用类型的属性始终都会被所有的实例共享
+
+## 寄生式继承
+- 创建一个仅用于封装继承过程的函数，该函数内部增强对象（例如向对象添加新的方法）
+```
+借用上例中的 Obj 函数
+function  createAnonther(origin){
+    var clone = Obj(origin) // 浅复制，创建一个新对象
+    clone.sayHi = function(){ //这里如果每个实例具有很多不同的方法，则需在此写入很多方法，降低函数复用度
+        console.log('hi')
+    }
+    return clone
+}
+```
+## 寄生组合式继承
+- [组合继承](#group_inherit)是 js 常用的继承方式，但是也有缺点
+```
+function inheritPrototype(sup,sub){
+    // 创建一个超类型原型的一个副本
+    var sPrototype = Object(sup.prototype)
+    // 为副本添加 constructor 属性 ( 重写时丢失了默认的 constructor)
+    sPrototype.constructor = sub
+    sub.prototype = sPrototype
+}
+```
+- 具体使用
+```
+function Super(name){
+    this.name = name;
+    this.color = ['red','yellow']
+}
+Super.prototype.say = function(){
+    console.log(this.name)
+}
+function Sub(name,age){
+    Super.call(this,name); 
+    this.age = age
+}
+inheritPrototype(Super,Sub)
+var p = new Sub('tracy',27)
+p.say() => 'tracy'
+```
+- 目前最理想的继承方式
