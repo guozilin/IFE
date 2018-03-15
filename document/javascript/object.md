@@ -1,7 +1,7 @@
 # Object
 
 ## 属性类型
-**1.数据属性**
+#### 1.数据属性
 
    - [[Configurable]] 能否通过delete删除属性，能否被修改，默认值true
    - [[Enumberable]] 能否通过for...in 循环返回属性 默认true
@@ -25,7 +25,7 @@
     console.log(person)
 ```
 
-**2.访问器属性**
+#### 2.访问器属性
 
    - [[Configurable]] 能否通过delete删除属性，能否被修改，默认值true
    - [[Enumberable]] 能否通过for...in 循环返回属性 默认true
@@ -52,7 +52,7 @@ book.year = 2019;
 book.edition = 2
 ```
 
-**3.定义多个属性**
+#### 3.定义多个属性
 ```
 'use strict';
 
@@ -70,7 +70,7 @@ Object.defineProperties(person,{
 })
 ```
 
-**读取属性的特性**
+#### 读取属性的特性
 
 Object.getOwnPropertyDescriptor(属性所在对象,描述符)，返回值是一个对象
 ```
@@ -100,7 +100,7 @@ desc.configurable => false
 ```
 
 ## 创建对象
-**1. 工厂模式**
+#### 1. 工厂模式
 
 主要解决了创建多个相思病对象的问题
 ```
@@ -119,7 +119,7 @@ typeof(person1) => undefined
 无法判断一个对象的类型
 ```
 
-**2. 构造函数模式**
+#### 2. 构造函数模式
 - 没有显式的创建对象
 - 直接将属性方法赋予this
 - 没有return语句
@@ -150,7 +150,7 @@ person instanceof Person => true
     var o = new Object()
     Person.call(o,'mark','27','worker') => o.say() => 'mark'
 
-**3. 原型模式** --prototype
+#### 3. 原型模式 --prototype
 
 - 创建的每个函数都有一个prototype属性 
 - 该属性是一个指针，只指向一个对象
@@ -171,10 +171,11 @@ person1.say() == person2.say() //true tracy
 [理解原型-prototype](https://github.com/guozilin/guozilin.github.io/blob/master/document/javascript/prototype.md)
 
 
-**4. 组合构造函数与原型模式**
+#### 4. 组合构造函数与原型模式
 
-**5. 动态原型模式**
 
-**6. 寄生构造函数模式**
+#### 5. 动态原型模式
 
-**7. 稳妥构造函数模式**
+#### 6. 寄生构造函数模式
+
+#### 7. 稳妥构造函数模式
