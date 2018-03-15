@@ -143,12 +143,13 @@ var person1 = new Person('tracy','27','doctor')
 
 person1 instanceof Object => true
 
-person instanceof Person => true
-
-    构造函数当作普通函数调用
-    Person('tracy','27','worker') => window.say() => 'tracy'
-    var o = new Object()
-    Person.call(o,'mark','27','worker') => o.say() => 'mark'
+person1 instanceof Person => true
+```
+构造函数当作普通函数调用
+Person('tracy','27','worker') => window.say() => 'tracy'
+var o = new Object()
+Person.call(o,'mark','27','worker') => o.say() => 'mark'
+```
 
 #### 3. 原型模式 --prototype
 
@@ -168,7 +169,7 @@ var person1 = new Person()
 var person2 = new Person() 
 person1.say() == person2.say() //true tracy
 ```
-[理解原型-prototype](https://github.com/guozilin/guozilin.github.io/blob/master/document/javascript/prototype.md)
+[理解原型-prototype](https://github.com/guozilin/guozilin.github.io/blob/master/document/javascript/prototype.md?_blank)
 
 
 #### 4. 组合构造函数与原型模式
