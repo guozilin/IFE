@@ -18,7 +18,6 @@
 var max = Math.max(1,2,3,4,5) => 5
 var min = Math.min(1,2,3,4,5) => 1
 获取数组极值
-var val= [1,2,3,4,5];
 max = Math.max.apply(Math,val) => 5
 ```
 #### 舍入方法
