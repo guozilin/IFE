@@ -13,11 +13,11 @@
         return a + b
     }
     函数表达式
-    let sum = function(a,b){
+    var sum = function(a,b){
         return a + b;
     }
     Function 构造函数
-    let sum = new Function('a','b','return a + b') //不推荐 影响性能，解析代码，解析传入构造函数中的字符串
+    var sum = new Function('a','b','return a + b') //不推荐 影响性能，解析代码，解析传入构造函数中的字符串
 ```
 
 ### 函数声明与函数表达式的区别
@@ -60,7 +60,7 @@
     function addName(name){
         return 'tracy' + name;
     }
-    let tt = doSomething('Tre',addName) // tracyTre
+    var tt = doSomething('Tre',addName) // tracyTre
 
     2. 函数也可以作为另一个函数的结果返回
     function compare(name){
@@ -128,13 +128,13 @@
 
     apply(),call() 扩展函数运行的作用域
     eg: 
-    let color = 'red'
-    let o = { color: 'blue'}
+    var color = 'red'
+    var o = { color: 'blue'}
     function getColor(){
         console.log(this.color)
     }
     getColor() // red;
-    let oSayColor = getColor.bind(o)
+    var oSayColor = getColor.bind(o)
     oSayColor() // blue
 
 ```
