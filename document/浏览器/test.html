@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var EventUtil = {
+            addHandler: function(ele,type,handle){
+                if(ele.addEventListener){
+                    ele.addEventListener(type,handle,false)
+                }else if(ele.attachEvent){
+                    ele.attachEvent('on'+type,handle)
+                }else{
+                    ele['on'+type] = handle
+                }
+            },
+            removeHandler : function(ele,type,handle){
+                if(ele.removeEventListener){
+                    ele.removeEventListener(type,handle,false)
+                }else if(ele.detachEvent){
+                    ele.detachEvent('on'+type,handle)
+                }else{
+                    ele['on'+type] = handle
+                }
+            },
+            getEvent : function(event){
+                return event ? event : window.event
+            },
+            getTarget : function(event){
+                return event.target || event.srcElement
+            },
+            preventDefault : function(event){
+                if(event.preventDefault){
+                    event.preventDefault()
+                }else{
+                    event.returnValue = false
+                }
+            },
+            stopPropagation : function(event){
+                if(event.stopPropagation){
+                    event.stopPropagation()
+                }else{
+                    event.cancleBubble = true
+                }
+            }
+            
+        }
+    </script>
+</body>
+</html>
