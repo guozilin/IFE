@@ -5,15 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        .disabled{
+            color: gray
+        }
+    </style>
+    <script>
+    console.log(document.readyState)
+    </script>
 </head>
 <body>
 
     <div id="demo">demo</div>
     <div id="demo1" name="demo1">demo1</div>
     <span id="demo2">demo2</span>
+    <div id="app" class="user name logo disabled">app</div>
+    <div class="user name logo disabled">
+        <div id="app1">
+            jjjj
+        </div>
+    </div>
+    <button id="btn">toggle app class</button>
 
 
-    <script>
+    <script>    
+        console.log(document.readyState)
+        // className 操作
+        var app = document.getElementById('app')
+        var app1 = document.getElementById('app1')
+        var btn = document.getElementById('btn')
+        app.classList.add('new-style')
+        app.classList.remove('user')
+        console.log(app.classList.contains('user'))
+        console.log(app1.outerHTML)
+        console.log(app1.innerHTML)
+        
+        btn.onclick = function(){
+            // 用户是否与页面正在交互
+            console.log(document.hasFocus())
+            app.classList.toggle('disabled')
+        }
+        console.log(app.classList)
+
     var demo = document.getElementById("demo");
     var demo2 = document.getElementById("demo2");
     // demo.appendChild(demo2)
@@ -33,9 +66,16 @@
     div.appendChild(tet)
     div.appendChild(tet2)
     div.firstChild.splitText(7)
-    console.log(div.firstChild.nodeValue)
+    // console.log(div.firstChild.nodeValue)
     document.body.appendChild(div)
+    console.log(document.readyState)
 
     </script>
 </body>
 </html>
+<script>
+        console.log(document.readyState)
+        console.log(document.compatMode) //标准模式 兼容模式
+
+
+</script>
