@@ -52,3 +52,14 @@ ele.insertAdjacentHTML('afterbegin','hello world') // 作为第一个的子元�
 ele.insertAdjacentHTML('beforeend','hello world') // 作为最后一个元素插入
 ele.insertAdjacentHTML('afterend','hello world') // 作为最后一个子元素插入
 ```
+
+### 插入文本
+- innerText 属性
+- outerText 属性
+
+### 滚动
+
+- scrollIntoView() 方法， 滚动到当前可视窗口
+- scrollIntoViewIfNeeded(bool) 视野中部，垂直方向的
+- scrollByLines() 将元素滚动到指定的行高
+- scrollByPages() 将元素滚动到指定的页面高度
