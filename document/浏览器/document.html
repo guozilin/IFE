@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="demo">demo</div>
+    <div id="demo1" name="demo1">demo1</div>
+    <span id="demo2">demo2</span>
+
+
+    <script>
+    var demo = document.getElementById("demo");
+    var demo2 = document.getElementById("demo2");
+    // demo.appendChild(demo2)
+   var d = document.getElementsByTagName('div');
+   var n = document.getElementsByName("demo1")
+   var d1 = d.item(0).innerText
+//    console.log(d.item(0))
+//    console.log(d)
+//    console.log(d[0])
+//    console.log(d.namedItem("demo1"))
+//    console.log(n)    
+    var div = document.createElement('div');
+    div.id='divDemo';
+    div.classList = 'red blue';
+    var tet = document.createTextNode('hellojs')
+    var tet2 = document.createTextNode('hello yxsahsas')
+    div.appendChild(tet)
+    div.appendChild(tet2)
+    div.firstChild.splitText(7)
+    console.log(div.firstChild.nodeValue)
+    document.body.appendChild(div)
+
+    </script>
+</body>
+</html>
