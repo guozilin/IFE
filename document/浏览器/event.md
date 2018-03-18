@@ -42,11 +42,11 @@ var EventUtil = {
         }
     },
     getMouseButton  : function(event){
-        if(document.impementadtion.hasFeature('MouseEvent','2.0)){
+        if(document.impementadtion.hasFeature('MouseEvent','2.0')){
             return event.button
         }else{
             switch(event.button){
-                case: 0:
+                case 0:
                 case 1:
                 case 3:
                 case 5:
@@ -94,3 +94,30 @@ var EventUtil = {
     3. keyup 释放键盘键时触发
 - 当发生键盘事件时，event对象中会包含一个 keyCode，charCode
 - 文本事件只有一种 textInput 文本显示给用户之前更容易拦截文本
+
+### HTML5事件
+- contextmenu 事件 自定义右击菜单
+```
+EventUtil.addHandle(window,'load',function(event){
+    var div = document.getElementById('my-div');
+    EventUtil.addHandle(div,'contextmenu',function(event){
+        event = EventUtil.getEvent(event);
+        EventUtil.preventDefault(event);
+        var menu = document.getElementById('menu-demo');
+        menu.style.left = event.clientX + 'px';
+        menu.style.top = event.clienxY + 'px';
+        menu.style.visibility = 'visible'
+    })
+    EventUtil.addHandle(document,'click',function(event){
+        document.getElementById('menu-demo').style.visibility = 'hidden';
+    })
+})
+```
+- beforeunload 事件 关闭页面前，弹窗，告知用户页面即将关闭，是否确认
+- DOMContentLoaded 事件 DOM 树加载完后之后触发，不管 js，css，图片是否加载完成
+- readystatuschange 事件 主要监听 document.readystatus 的变化
+    1. uninitialized(未初始化)
+    2. loading (正在加载中)
+    3. loaded (加载完毕)
+    4. interactive (可以操作对象了，但还没加载完成)
+    5. complete (完成)

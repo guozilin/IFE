@@ -9,6 +9,9 @@
         .disabled{
             color: gray
         }
+        #menu-demo{
+            visibility: hidden;
+        }
     </style>
     <script>
     console.log(document.readyState)
@@ -26,9 +29,107 @@
         </div>
     </div>
     <button id="btn">toggle app class</button>
-
+    <div id="my-div">
+       contextmenu
+    </div>
+    <div id="menu-demo">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
 
     <script>    
+    var EventUtil = {
+    addHandler: function(ele,type,handle){
+        if(ele.addEventListener){
+            ele.addEventListener(type,handle,false)
+        }else if(ele.attachEvent){
+            ele.attachEvent('on'+type,handle)
+        }else{
+            ele['on'+type] = handle
+        }
+    },
+    removeHandler : function(ele,type,handle){
+        if(ele.removeEventListener){
+            ele.removeEventListener(type,handle,false)
+        }else if(ele.detachEvent){
+            ele.detachEvent('on'+type,handle)
+        }else{
+            ele['on'+type] = handle
+        }
+    },
+    getEvent : function(event){
+        return event ? event : window.event
+    },
+    getTarget : function(event){
+        return event.target || event.srcElement
+    },
+    preventDefault : function(event){
+        if(event.preventDefault){
+            event.preventDefault()
+        }else{
+            event.returnValue = false
+        }
+    },
+    stopPropagation : function(event){
+        if(event.stopPropagation){
+            event.stopPropagation()
+        }else{
+            event.cancleBubble = true
+        }
+    },
+    getMouseButton  : function(event){
+        if(document.impementadtion.hasFeature('MouseEvent','2.0')){
+            return event.button
+        }else{
+            switch(event.button){
+                case 0:
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                   return 0;
+                case 2:
+                case 6:
+                    return 2;
+                case 4:
+                    return 1;
+            }
+        }
+    },
+    getWheelDetail : function(event){
+        if(event.wheelDelta){
+            return (client.engine.opera && client.engine.opera < 9.5 ? -event.wheelDelta : event.wheelDelta)
+        }else{
+            return -event.detail * 40
+        }
+    }
+}
+    EventUtil.addHandler(window,'load',function(event){
+    var div = document.getElementById('my-div');
+    EventUtil.addHandler(div,'contextmenu',function(event){
+        event = EventUtil.getEvent(event);
+        EventUtil.preventDefault(event);
+        var menu = document.getElementById('menu-demo');
+        menu.style.left = event.clientX + 'px';
+        menu.style.top = event.clienxY + 'px';
+        menu.style.visibility = 'visible'
+    })
+    EventUtil.addHandler(document,'click',function(event){
+        document.getElementById('menu-demo').style.visibility = 'hidden';
+    })
+})
+EventUtil.addHandler(window,'beforeunload',function(event){
+    event = EventUtil.getEvent(event);
+    var msg ='确认关闭页面吗'
+    event.returnValue = msg
+    return msg
+})
+
         console.log(document.readyState)
         // className 操作
         var app = document.getElementById('app')
