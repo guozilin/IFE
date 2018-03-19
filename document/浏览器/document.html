@@ -129,7 +129,13 @@ EventUtil.addHandler(window,'beforeunload',function(event){
     event.returnValue = msg
     return msg
 })
-
+EventUtil.addHandler(window,'hashchange',function(event){
+    alert('hashchange' + event.oldURL)
+    alert('haschange' + event.newURL)
+})
+// EventUtil.addHandler(window,'load',function(event){
+//     alert('load')
+// })
         console.log(document.readyState)
         // className 操作
         var app = document.getElementById('app')

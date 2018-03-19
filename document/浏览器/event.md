@@ -121,3 +121,19 @@ EventUtil.addHandle(window,'load',function(event){
     3. loaded (加载完毕)
     4. interactive (可以操作对象了，但还没加载完成)
     5. complete (完成)
+- pageshow 和 pagehide 事件  监听页面关闭打开
+- hashchange 事件 监听 URL #后的 hash 的 变化 可以接受到新的 url 与之前的 url event.oldURL,event.newURL
+
+### 触摸事件
+- touchstart
+- touchmove
+- touchend
+- touchcancel
+- 执行顺序：
+    1. touchstart
+    2. mouseover
+    3. mousemove
+    4. mousedown
+    5. mouseup
+    6. click
+    7. touched
