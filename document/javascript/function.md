@@ -7,7 +7,7 @@
 ```
 
 ### 函数的声明
-```
+```javascript
     函数声明
     function sum(a,b){
         return a + b
@@ -21,7 +21,7 @@
 ```
 
 ### 函数声明与函数表达式的区别
-```
+```javascript
     console.log(sum(1,2)); // 正常执行，函数声明会提升，
     // javascript引擎第一遍会把函数声明放到源代码顶部，之后再执行调用
     function sum(a,b){
@@ -36,7 +36,7 @@
 ```
 
 ### 函数覆盖
-```
+```javascript
     function sum(a,b){
         return a + b;
     }
@@ -52,7 +52,7 @@
 ```
 
 ### 作为值的函数
-```
+```javascript
     1. 函数可以作为值来使用
     function doSomething(name,addname){
         return addname(name)
@@ -83,7 +83,7 @@
 
 ### 函数的内部属性
 
-```
+```javascript
     1. arguments 类数组对象,arguments拥有一个属性callee，指针，指向该函数本身
     function factorial(num){
         if(num <=1 ){
@@ -117,7 +117,7 @@
 ```
 
 ### 函数的属性和方法
-```
+```javascript
     属性：
     1. length 函数参数的数量 无参数时为0
     2. prototype 保存所有实例方法，基本上都是挂在prototype上。 prototy不可枚举，即不可以for...in列举出来

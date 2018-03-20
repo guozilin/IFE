@@ -2,7 +2,7 @@
 
 ### 数组检测
 
-```
+```javascript
    xx instanceof Array  => boolean
 
    Array.isArray(xx) => boolean
@@ -10,7 +10,7 @@
 ```
 ### 数组转字符串
 
-```
+```javascript
     xx.toLocaleString() 
     xx.toString()
     xx.valueof() //实际返回依旧是数组
@@ -20,7 +20,7 @@
 
 ### 栈方法
 
-```
+```javascript
     var arr = [1,2]
     arr.push(3); //[1,2,3]  push 末端增加
     arr.push(4,5) //[1,2,3,4,5]
@@ -36,7 +36,7 @@
 
 ### 队列方法
 
-```
+```javascript
     var arr = [1,2]
     var first = arr.shift() // 取得第一项 first = 1, arr = [2]
     var arr.unshift(3,4) // 顶端插入  推入两项 arr = [3,4,2]
@@ -44,7 +44,7 @@
 
 ### 重排序方法
 
-```
+```javascript
     var a = [1,2,13,14,5]
     a.reverse() => [5,4,3,2,1]
     a.sort() => [1,13,14,2,5]
@@ -59,7 +59,7 @@
 
 ### 操作方法
 
-```
+```javascript
     var a = [1,23]
     var b = a.concat()  b=[1,23]  copy
     var c =a.concat(3,5) c =[1,23,3,5]
@@ -74,14 +74,14 @@
 ```
 
 ### 位置方法
-```
+```javascript
     xx.indexof() 从头向后找
     xx.lastIndexOf() 从最后向前找
     均接受两个参数 一必填，数组中是否包含某一项，有返回索引，无则返回-1
 ```
 ### 迭代方法
 
-```
+```javascript
     var arr = [1,2,3,4]
     var ev = arr.every((item,index,arr) => item > 2)
     如果数组每一项都大于2则返回true 反之返回false
@@ -101,7 +101,7 @@
 ```
 
 ### 归并方法
-```
+```javascript
     var a = [1,2,3,4];
     var b = a.reduce((prev,cur,index,arr) => prev + cur)
     b = 1 + 2 + 3 + 4

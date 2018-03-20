@@ -33,7 +33,7 @@
     7. linkMove 允许值为 link 或者 move 的 dropEffect
     8. all 允许任意的 dropEffect
 - 设置可拖动元素 draggable 可拖动属性
-```
+```html
 <img src="./img.png" draggable="false"> // 不可拖动元素
 <img src="./img.png" draggable=" true"> // 可拖动元素
 ```

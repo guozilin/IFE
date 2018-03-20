@@ -6,7 +6,7 @@
 - 默认情况下，所有的原型对象都会获得一个constructor属性，该属性指向prototype属性所在函数的指针
 - 该指针叫[[Prototype]] 没有标准的方法去访问，但是浏览器中会支持一个叫 __proto__ 的属性
 - 该连接存在于实例与构造函数的原型对象之间，并不存在与实例与构造函数之间
-```
+```javascript
 function Person(){}
 Person.prototype.name = 'tracy'
 Person.prototype.age = 27
@@ -43,7 +43,7 @@ person1.say() == person2.say() //true tracy
 #### 通过对象实例可以访问保存在原型中的值，但不可以通过对象实例改写原型中的值
 
 - 如果在实例中添加一个与原型中相同的属性，实例的属性值会覆盖原型中的属性值
-```
+```javascript
 person1 = new Person();
 person2 = new Person();
 person1.name = 'mark';
@@ -51,7 +51,7 @@ person1.say() => 'mark' // 并不会改变原型中的属性值
 person2.say() => 'tracy'
 ```
 - 使用delete 操作符则可以完全删除实例属性，从而让我们能够重新访问原型中的属性
-```
+```javascript
 person1 = new Person();
 person1.name = 'mark';
 person1.name = null;
@@ -62,7 +62,7 @@ person1.say() => 'tracy'; // 访问原型中的值
 
 #### hasOwnProperty()
 - 使用hasOwnProperty()方法可以检测一个属性是存在于实例中，还是存在于原型中。只有存在实例中才会返回true
-```
+```javascript
 person1 = new Person();
 person1.name = 'mark';
 person2 = new Person();
@@ -72,7 +72,7 @@ person2.hasOwnProperty('name') => false // name属性在原形对象中
 
 #### 原型与in操作符
 - in 单独使用 in 操作符会在通过对象能够访问给定属性时返回true，无论该属性存在于实例中还是原型中。
-```
+```javascript
 var person1 = new Person();
 person1.name = 'mark'
 'name' in person1 => true // 来自实例
@@ -81,7 +81,7 @@ var person2 = new Person()
 
 ```
 - in 与 hasOwnProperty() 一起使用可以判断属性是不是来自于原型
-```
+```javascript
 function hasPrototypeProperty(object,name){
     return !object.hasOwnProperty(name) && (name in object)
 }
@@ -91,7 +91,7 @@ hasPrototypeProperty(person1,'name') => false;
 hasPrototypeProperty(person1,'age') => true;
 ```
 - for...in 可枚举出对象实例，原型中所有的可枚举的，可通过对象访问的属性
-```
+```javascript
 for(key in person1){
     console.log(key) => name,age,job,say()
 }
@@ -99,7 +99,7 @@ for(key in person1){
 ES6新增：constructor,prototype,(并不是所有浏览器均实现)
 ```
 - 获取对象实例中所有的可枚举属性-- Object.keys()
-```
+```javascript
 var keys = Object.keys(Person.prototype) => [name,age,job,say] // 原型中的可枚举属性
 var person1 = new Person() 
 var p1Keys = Object.keys(person1) => [] // 该实例中并没有属性
@@ -108,7 +108,7 @@ var p2Keys = Object.keys(person1) => ['name'] // 该实例中实现了一个 nam
 ```
 
 #### 更简单的原型语法
-```
+```javascript
 function Friend(){}
 Friend.prototype = {
     name: 'tracy',
@@ -121,14 +121,14 @@ Friend.prototype = {
 ```
 - 优点：代码更少更精简
 - 缺点： constructor 属性不再指向 Friend（因为每创建一个函数，同时也会创建它的 constructor 属性）
-```
+```javascript
 var jojo = new Friend()
 jojo instanceof Object => true
 jojo instanceof Friend => true
 jojo.constructor  => Object
 ```
 - 通过指定 constructor 属性可以确保该属性能访问到正确的值
-```
+```javascript
 Friend.prototype = {
     constructor: Friend,
     ...
@@ -149,7 +149,7 @@ Object.defineProperty(Friend.prototype,'constructor',{
 #### 原型的动态性
 
 - 先创建实例，再去改写原型中的方法，在实例中依旧可以访问到新的方法
-```
+```javascript
 var kevi = new Friend()
 Friend.prototype.hi = {
     console.log('hi')
@@ -158,7 +158,7 @@ kevi.hi() => 'hi'
 ```
 
 - 先创建实例，再去改写原型对象，则会切断构造函数与最初原型的联系
-```
+```javascript
 var kk = new Friend();
 Friend.prototype = {
     constructor: Friend,
@@ -173,7 +173,7 @@ kk.say() // error
 
 - 例如： Array.prototype.push(),String.prototype.subString()...
 - 可以在原生对象的原型中修改或者添加方法
-```
+```javascript
 String.prototype.sayHello = function(){
     console.log('hello')
 }
@@ -186,7 +186,7 @@ str.sayHello() => 'hello'
 
 - 所有的实例都会默认取得所有的相同的属性和方法
 - 当属性中包含一个引用类型值的时候，修改实例中的值，则会影响到所有的实例
-```
+```javascript
 function P(){}
 P.prototype = {
     constructor: P,

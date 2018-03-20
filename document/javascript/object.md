@@ -9,7 +9,7 @@
    - [[Value]] 属性的数据值 ，写入属性的时候默认值为undefined
    - 修改默认属性必须使用 Object.defineProperty()
 
-```
+```javascript
     'use strict';
     var person = new Object();
     Object.defineProperty(person,'name',{
@@ -31,7 +31,7 @@
    - [[Enumberable]] 能否通过for...in 循环返回属性 默认true
    - [[Get]] 读取属性时调用的方法 默认值undefined
    - [[Set]] 写入属性时调用的方法 默认值undefined
-```
+```javascript
 'use strict';
 var book = {
     _year: 2017,
@@ -53,7 +53,7 @@ book.edition = 2
 ```
 
 #### 3.定义多个属性
-```
+```javascript
 'use strict';
 
 var person = new Object();
@@ -73,7 +73,7 @@ Object.defineProperties(person,{
 #### 读取属性的特性
 
 Object.getOwnPropertyDescriptor(属性所在对象,描述符)，返回值是一个对象
-```
+```javascript
 'use strict';
 var book = {};
 Object.defineProperies(book,{
@@ -103,7 +103,7 @@ desc.configurable => false
 #### <span id="factory">1. 工厂模式</span>
 
 主要解决了创建多个相似对象的问题
-```
+```javascript
 function createPerson(name,age,job){
     var o = new Object()
     o.name = name
@@ -124,7 +124,7 @@ typeof(person1) => undefined
 - 直接将属性方法赋予this
 - 没有return语句
 
-```
+```javascript
 function Person(name,age,job){
     this.name = name
     this.age = age
@@ -144,7 +144,7 @@ var person1 = new Person('tracy','27','doctor')
 person1 instanceof Object => true
 
 person1 instanceof Person => true
-```
+```javascript
 构造函数当作普通函数调用
 Person('tracy','27','worker') => window.say() => 'tracy'
 var o = new Object()
@@ -157,7 +157,7 @@ Person.call(o,'mark','27','worker') => o.say() => 'mark'
 - 该属性是一个指针，只指向一个对象
 - 该对象包含了所有实例共享的属性和方法
 - 原型可以让所有的实例共享它包含的属性和方法
-```
+```javascript
 function Person(){}
 Person.prototype.name = 'tracy'
 Person.prototype.age = 27
@@ -175,7 +175,7 @@ person1.say() == person2.say() //true tracy
 #### 4. 组合构造函数与原型模式
 
 - 构造函数模式用于创建实例属性，原型模式用于创建公用的属性和方法
-```
+```javascript
 function Person(name,age,job){
     this.name = name;
     this.age = age;
@@ -200,7 +200,7 @@ p1.say() === p2.say() => true
 
 #### 5. 动态原型模式
 
-```
+```javascript
 function Person(name, age, job){
 　　//属性
     this.name = name;
@@ -222,7 +222,7 @@ friend.sayName();
 #### 6. 寄生构造函数模式
 
 - 该方法与[工厂模式](#factory)类似，通过在结尾加一个return重写调用构造函数的返回值
-```
+```javascript
 function Person(name,age,job){
     var o = new Object();
     o.name = name;
@@ -235,7 +235,7 @@ function Person(name,age,job){
 }
 ```
 - 可用于不改变原始对象构造函数的情况下，增加额外的处理方法
-```
+```javascript
 function SpecialArray(){
     var arr = new Array();
     arr.push.apply(arr,arguments);
@@ -255,7 +255,7 @@ colors.toPipedString() => 'red|blue|green'
 
 - 没有公共属性
 - 不引用 this 的对象
-```
+```javascript
 function Person(name,age,job){
     var o = new Object();
     o.say = function(){

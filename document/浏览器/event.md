@@ -1,7 +1,7 @@
 # 事件处理程序
 
 ### 跨浏览器的事件处理程序
-```
+```javascript
 var EventUtil = {
     addHandler: function(ele,type,handle){
         if(ele.addEventListener){
@@ -97,7 +97,7 @@ var EventUtil = {
 
 ### HTML5事件
 - contextmenu 事件 自定义右击菜单
-```
+``` javascript
 EventUtil.addHandle(window,'load',function(event){
     var div = document.getElementById('my-div');
     EventUtil.addHandle(div,'contextmenu',function(event){
@@ -130,7 +130,7 @@ EventUtil.addHandle(window,'load',function(event){
 - 执行 pushState()后，新的状态信息会加入历史状态栈，浏览器会变成新的 URL，但浏览器不会真的向服务器发送请求
 - 第二个参数目前尚无浏览器支持，只能先传一个空字符串
 - pushState()后，回退按钮也可以使用， 按下回退会触发 window 对象的 popstate 事件
-```
+``` javascript
 EventUtil.addHandler(window,'popstate',function(event){
     var state = event.state
     if(state){

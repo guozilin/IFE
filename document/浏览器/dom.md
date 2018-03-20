@@ -5,8 +5,8 @@
 - querySelector() 方法 接受一个 css 选择器，返回第一个匹配的元素，没有则返回 null
 - querySelectorAll() 方法，接受一个 css 选择器，返回一组匹配的元素，没有则返回 []
 - matchesSelector() 方法，接受一个 css 选择器，如果调用该方法的元素与该选择器匹配则返回 true，否则返回 false
-```
-由于浏览器实现不同，因此需要进行一次方法是否支持的判断
+```javascript
+//由于浏览器实现不同，因此需要进行一次方法是否支持的判断
 function matchesSelector(ele,selector){
     if(ele.matchesSelector){
         return ele.matchesSelector(selector)
@@ -26,7 +26,7 @@ function matchesSelector(ele,selector){
 
 - getElementsByClassName() 传入一个或多个类名的字符串，返回一组匹配的元素，与getElementsByTagName(),getElementsByName()累似
 - classList 属性
-```
+```javascript
 <div id="app" class="user name logo disabled">app</div>
 <button id="btn">toggle app class</button>
 
@@ -46,7 +46,7 @@ console.log(app.classList)
 - innerHTML 属性
 - outerHTML 属性
 - insertAdjacentHTML() 方法
-```
+```javascript
 ele.insertAdjacentHTML('beforebegin','hello world') // 作为前一个同辈元素插入
 ele.insertAdjacentHTML('afterbegin','hello world') // 作为第一个的子元素插入
 ele.insertAdjacentHTML('beforeend','hello world') // 作为最后一个元素插入

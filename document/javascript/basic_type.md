@@ -1,7 +1,7 @@
 # 基本数据类型
 
 ### Boolean 类型
-```
+```javascript
     1. var bool = new Boolean(false);
     bool 是一个boolean对象， typeof bool => Object
 
@@ -10,7 +10,7 @@
 ```
 
 ### Number 类型
-```
+```javascript
     1. var num = new Number(10);
     num 是一个Number对象 typeof num => Object
 
@@ -31,7 +31,7 @@
 ```
 
 ### String 类型
-```
+```javascript
     1. var str = new String('12345');
     typeof str => Object
 

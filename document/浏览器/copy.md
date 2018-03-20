@@ -11,14 +11,14 @@
 - IE 浏览器中 通过 window 对象访问 window.clipboardData
 - 其它浏览器中通过 event 对象访问 event.clipboardData
 - getData() 参数为 'text' 或者 'URL'
-```
+```javascript
 function getClipboardData(event){
     var clipboardData = event.clipboardData || window.clipboardData;
     return clipboardData.getData('text')
 }
 ```
 - setData() 
-```
+```javascript
 function setClipboardData(event,value){
     if(event.clipboardData){
         return event.clipboardData.setData('text/plain',value)
