@@ -124,6 +124,24 @@ EventUtil.addHandle(window,'load',function(event){
 - pageshow 和 pagehide 事件  监听页面关闭打开
 - hashchange 事件 监听 URL #后的 hash 的 变化 可以接受到新的 url 与之前的 url event.oldURL,event.newURL
 
+### 历史状态管理
+- history.pushState(状态对象,新状态的标题,可选的相对 URL)
+- history.pushState({name:'Mark'},'Mark home','person.html')
+- 执行 pushState()后，新的状态信息会加入历史状态栈，浏览器会变成新的 URL，但浏览器不会真的向服务器发送请求
+- 第二个参数目前尚无浏览器支持，只能先传一个空字符串
+- pushState()后，回退按钮也可以使用， 按下回退会触发 window 对象的 popstate 事件
+```
+EventUtil.addHandler(window,'popstate',function(event){
+    var state = event.state
+    if(state){
+        processState(state)
+    }
+})
+```
+- 更新当前状态 replaceState() 不会新增状态，只会重写当前状态
+- history.replaceState({name:'mark'},'mark home')
+
+
 ### 触摸事件
 - touchstart
 - touchmove
