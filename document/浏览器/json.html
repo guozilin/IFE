@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSON</title>
+</head>
+<body>
+    
+    <script>
+    var books = {
+    title   : 'javascript',
+    authors : ['guozl','mark'],
+    edition : true,
+    year    : 2015,
+    month   : null,
+   
+
+    }
+
+    var bookText = JSON.stringify(books)
+    console.log(JSON.parse(bookText,function(key,value){
+        if(key === 'title' || key === 'authors'){
+            return undefined
+        }else{
+            return value
+        }
+    }))
+    console.log(bookText) //{"title":"javascript","authors":["guozl","mark"],"edition":2,"year":2015}
+
+    </script>
+</body>
+</html>
