@@ -39,7 +39,7 @@ msg=> '10 books cost 2.50 yuan.'
 - 写法 tag`${a+b} nihao ${a*b}.`
 >* 个人理解 tag 是一个函数
 >* tag 的参数包含一个数组，一个不定参 tag(arr,...value)
->* arr 指的是`${a+b} nihao ${a*b}.`中去掉表达式之外的字符串组成的数组 [" nihao ","."]
+>* arr 指的是`${a+b} nihao ${a*b}.`中去掉表达式之外的字符串组成的数组 [""," nihao ",". "]
 >* ...value 指的是表达式${a+b}与${a*b},由于模板包含几个表达式是不确定的，因此用...value 表示更合适
 ``` javascript
 function tag(arr,...value){
@@ -52,3 +52,32 @@ function tag(arr,...value){
     return result;
 }
 ```
+>* 上例中：arr 的组成中包含第一个占位符的空字符串
+>* 两个占位符之间的字符串
+>* 第二个占位符后的**字符串或者空字符串**
+>* arr.length 与 value.length 的关系为 arr.length - 1 = value.length
+- 标签模板的一个重要功能就是 HTML 标签过滤
+``` javascript
+let message = SaferHTML`<p>${sender} has sent you a message.</p>`;
+
+function SaferHTML(templateData) {
+  let s = templateData[0];
+  for (let i = 1; i < arguments.length; i++) {
+    let arg = String(arguments[i]);
+    s += arg.replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+    s += templateData[i];
+  }
+  return s;
+}
+```
+
+#### 在模板字面量中使用原始值
+- String.raw()
+- String.raw方法可以作为处理模板字符串的基本方法，它会将所有变量替换，而且对斜杠进行转义，方便下一步作为字符串来使用。
+``` javascript
+String.raw`Hi\n${2+3}!`;
+=> "Hi\n5!"
+```
+
