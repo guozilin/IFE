@@ -103,3 +103,131 @@ books.push(4) => [1,2,3,4] // 正常
 books = [2,3,4,5] // Uncaught SyntaxError: Identifier 'person' has already been declared
 
 ```
+#### 临时死区( Temporal Dead Zone)
+>* 标准文档中并没有明确 TDZ ，常用来描述let 与 const 的不提升效果
+>* JavaScript 引擎在扫描代码的时候，要么将变量提升到作用域顶部，要么将声明放在 TDZ 中
+>* 访问 TDZ 中的变量会触发错误
+>* 只有执行过变量声明的语句后，变量才会从 TDZ 中移除，可以被正常访问
+``` javascript
+// 同一个块级作用域中
+console.log(typeof value)//Uncaught ReferenceError: value is not defined
+// 这时 value 还未从 TDZ 中移除
+let value = 100;
+// 不同的块级作用域中
+console.log(typeof na) // undefined na未被声明 并不在临时死区中
+if(condition){
+    let na = 'named tracy'
+}
+```
+
+#### 循环中的块级作用域绑定
+- let 实现 for 循环的块级作用域
+``` javascript
+console.log(i) // 这里可以访问到 i = 10
+for(var i=0;i<10;i++){
+    console.log(i) // 0~9 输出
+}
+console.log(i) //这里也可以访问到i = 10
+/* ===================== */
+for(let i=0;i<10;i++){
+    console.log(i) // 0~9 输出
+}
+console.log(i) //Uncaught ReferenceError: i is not defined
+```
+#### 循环中的函数
+- 使用 var 声明，在循环中创建函数很困难，因为变量在循环外之后依旧可以访问
+``` javascript
+var funcs = [];
+for(var i=0; i<10; i++){
+    funcs.push(function(){
+        return console.log(i)
+    })
+}
+funcs.forEach(function(func){
+    console.log(func)
+    func() // 没有按预期输出0~9  而输出了10个10
+})
+```
+>* 由于循环中每次迭代都共享着i，循环结束后 i=10,所以每次调用 console.log(i) 都是输出10
+>* 为了解决这个问题，需要在循环中加入立即执行函数
+``` javascript
+var funcs = [];
+for(var i=0; i<10; i++){
+    funcs.push(
+        (function(val){
+            return console.log(val)
+        }(i))
+        // 立即执行函数
+    )
+}
+funcs.forEach(function(func){
+    func() // 预期输出0~9
+})
+```
+
+#### 循环中的 let 声明
+- 每次循环迭代都会创建一个新的变量，并以之前迭代中的同名变量名将其初始化。
+``` javascript
+let funcs = [];
+for(let i=0; i<10; i++){
+    funcs.push(function(){
+        return console.log(i)
+    })
+}
+funcs.forEach(function(func){
+    func() // 按预期输出0~9 
+})
+```
+- let 在 for...in 与 for...of 中，也与上述的行为一致。
+
+#### 循环中的 const 声明
+- 普通的 for 循环中，变量初始化用 const，但是改变变量值时会抛出错误
+``` javascript
+for(const i=0; i<10; i++){
+    console.log(i)
+}
+i=0 => 0;
+// i++ 出错 ，这个语句试图修改 const 声明的变量，所以会抛出错误
+```
+- const 在 for...in 与 for...of 中与 let 用法完全一致
+``` javascript
+var funcs = [],
+    obj = {
+        a: true,
+        b: true,
+        c: true
+    };
+for(let key in obj){
+    funcs.push(function(){
+        return console.log(key)
+    })
+}
+funcs.forEach(function(func){
+    func() // a,b,c
+})
+// const
+let funcs = [];
+let arr = [12,23,34];
+for(const value of arr){
+    funcs.push(function(){
+        return console.log(value)
+    })
+}
+funcs.forEach(function(func){
+    func() // 12,23,34
+})
+```
+#### 全局块作用域绑定
+- let 在全局作用域中创建一个变量，这时候会直接挂载到 window 对象上，如果与 window 对象本身的属性重名，则会覆盖
+``` javascript
+var RegExp = 'hello';
+console.log(window.RegExp)  => 'hello'
+console.log(window.RegExp == RegExp)  => true
+```
+- const 与 let 创建的全局变量，不会覆盖 window 的属性，只是会遮蔽
+``` javascript
+let RegExp = 'hello';
+console.log(RegExp) => 'hello'
+console.log(window.RegExp) => RegExp 方法
+console.log(window.RegExp == RegExp)  => false
+```
