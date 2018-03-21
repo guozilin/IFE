@@ -56,7 +56,7 @@ function tag(arr,...value){
 >* 两个占位符之间的字符串
 >* 第二个占位符后的**字符串或者空字符串**
 >* arr.length 与 value.length 的关系为 arr.length - 1 = value.length
-- 标签模板的一个重要功能就是 HTML 标签过滤
+- 标签模板的一个重要功能就是 HTML 标签过滤
 ``` javascript
 let message = SaferHTML`<p>${sender} has sent you a message.</p>`;
 
