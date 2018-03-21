@@ -231,3 +231,7 @@ console.log(RegExp) => 'hello'
 console.log(window.RegExp) => RegExp 方法
 console.log(window.RegExp == RegExp)  => false
 ```
+#### 书写建议
+>* 默认使用 const
+>* 需要改变的使用 let
+>* 大部分变量在初始化之后都不应被改变，预料之外的变量值是很多 bug 的源头
