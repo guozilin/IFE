@@ -36,12 +36,12 @@ function getValue(condition){
 
 ### 块级声明
 - 声明在指定块的作用域之外无法访问的变量，也叫词法作用域
-- 存在于函数内部
+- 存在于函数内部
 - 块中 （一对 {} 之间的区域）
 
 #### let 声明
-- 基本用法与var 相同，用来声明变量，可以把变量的作用域限定在当前代码块中
-- let 声明的变量不会被提升
+- 基本用法与 var 相同，用来声明变量，可以把变量的作用域限定在当前代码块中
+- let 声明的 变量不会被提升
 ``` javascript
 function getValue(condition){
     if(condition){
@@ -86,7 +86,7 @@ const b
 
 #### const 声明对象
 >* const 声明不允许修改其绑定，但是允许修改值
->* 用 const 声明对象后，可以修改其属性值
+>* 用 const 声明对象后，可以修改其属性值
 ``` javascript
 const person = {
     name: 'tracy'
