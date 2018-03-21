@@ -85,3 +85,21 @@ const b
 - const 声明的常量同样不会被提升至作用域顶部
 
 #### const 声明对象
+>* const 声明不允许修改其绑定，但是允许修改值
+>* 用 const 声明对象后，可以修改其属性值
+``` javascript
+const person = {
+    name: 'tracy'
+}
+person.name = 'mark' // 正常执行，可以改变 person 的 name 属性
+person.age = 27 // 可以正常添加属性
+// Uncaught SyntaxError: Identifier 'person' has already been declared
+person = {
+    name: 'tracy'
+}
+
+const books = [1,2,3]
+books.push(4) => [1,2,3,4] // 正常
+books = [2,3,4,5] // Uncaught SyntaxError: Identifier 'person' has already been declared
+
+```
