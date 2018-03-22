@@ -54,6 +54,7 @@ function getValue(condition){
     }
     console.log(value)
     // Uncaught ReferenceError: value is not defined
+    // ES6 强制开启严格模式，严格模式'use strict',变量未声明不能引用，否则回报引用错误
 }
 ```
 - 禁止重声明
