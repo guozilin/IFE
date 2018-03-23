@@ -79,5 +79,11 @@ function SaferHTML(templateData) {
 ``` javascript
 String.raw`Hi\n${2+3}!`;
 => "Hi\n5!"
+
+`Hi\n${2+3}!`;
+Hi
+5
+// 使用频率很低
+
 ```
 
