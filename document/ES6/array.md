@@ -102,4 +102,15 @@ pArr.forEach((item)=>{
 > 查找与某个值匹配的元素 还是使用 indexOf() 与 lastIndexOf()
 
 - fill()
+>* 替换数组中的多个元素
+>* 改变的是原始数组
+```javascript
+let nums = [1,2,3,4]
+nums.fill(1) => [1,1,1,1]  // nums 的值也变为 [1,1,1,1]
+
+nums.fill(2,1) => [1,2,2,2] // 从索引为1的开始用2填充，
+
+nums.fill(3,0,2) => [3,3,2,2] // 从索引为0的开始以3填充，到索引为2的结束填充，不包含2
+```
+>* 如果传入的索引值为负数，则实际的索引值为 Array.length + 负数
 - copyWithIn()
