@@ -81,3 +81,25 @@ pArr.forEach((item)=>{
     let nums = Array.from(num,(i)=>i+3) // [4,5,6]
 
 ```
+### 数组新增方法
+- find() 与 findIndex()
+>* 均接收两个参数，第一个为回调函数，第二个为可选参数（绑定回调函数的 this）
+>* 如果找到满足条件的，回调函数应返回 true，find()与 findIndex()也会停止搜索
+>* find()与 findIndex() 都是从前向后找，第一个满足及返回，不再继续找
+>* 区别： find() 返回具体的值;  findIndex() 返回值所对应的索引
+```javascript
+    let numbers = [1,2,3,4,5,6]
+    numbers.find(i => i == 2) //2
+    numbers.findIndex(i => i == 2) // 1
+
+    numbers.find(i => i == 7) // undefined
+    numbers.findIndex(i => i == 7) // -1
+
+    numbers.find(i => i % 2 ==0) //2
+    numbers.findIndex(i => i %2 ==1)    
+```
+> 一般情况下，在数组中根据某个条件查找匹配元素，用 find() 与 findIndex() ;
+> 查找与某个值匹配的元素 还是使用 indexOf() 与 lastIndexOf()
+
+- fill()
+- copyWithIn()
