@@ -99,3 +99,11 @@
     }
     add(2) //4
 ```
+- 默认参数的临时死区 TDZ
+``` javascript
+    // 这时的 b 尚未初始化，存在于 TDZ 中
+    function add(a = b,b){
+        return a + b
+    }
+    add(2) //4
+```
