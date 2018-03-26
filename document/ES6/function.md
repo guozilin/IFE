@@ -112,8 +112,35 @@
 
 ### 不定参数
 - 在函数的命名参数前添加三个点
+- 该参数是一个数组
+- 通过这个数组名可以访问里面的每一项
+- 函数的 length 指的是命名参数的数量，不定参数不在length 的范围内
 ```javascript
-    function pick(){
-
+    function pick(obj,...keys){
+        let result = Object.create(null)
+        for(let i=0,len=keys.length; i< len; i++){
+            result[keys[i]] = obj[keys[i]]
+        }
+        return result 
     }
+    // pick.length = 1
+```
+>* 每个函数有且只能有一个不定参，而且一定要放在最后
+>* 不定参不可以用在字面量 setter 中
+
+- 对 arguments 对象的影响
+```javascript
+    function check(...args){
+        console.log(args.length)
+        console.log(arguments.length)
+    }
+    check(1,2,3)
+    check(1)
+```
+>* arguments 总是包含所有传入的参数
+
+- 构造函数中也可以使用默认参数与 不定参
+```javascript
+    let add = new Function('a','b=a','return a+b')
+    let pick = new Function('...args','return agrs[0]')
 ```
