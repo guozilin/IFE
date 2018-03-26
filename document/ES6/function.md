@@ -64,3 +64,38 @@
     }
     add(1)
 ```
+
+### 默认参数表达式
+- 默认参数可以通过函数执行获取值
+``` javascript
+    function getValue(){
+        return 6
+    }
+    function add(a,b=getValue()){
+        return a + b
+    }
+    add(1) // 7
+    add(1,2) // 3
+
+    {
+        let value = 10;
+        function getValue(){
+            return value++
+        }
+        function add(a,b=getValue()){
+            return a + b;
+        }
+
+        add(1) // 11
+        add(1,3) // 4
+        add(1) // 12
+        add(1) // 13
+    }
+```
+- 可以使用先定义的参数，作为后定义参数的默认值
+``` javascript
+    function add(a,b=a){
+        return a + b
+    }
+    add(2) //4
+```
