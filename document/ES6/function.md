@@ -144,3 +144,15 @@
     let add = new Function('a','b=a','return a+b')
     let pick = new Function('...args','return agrs[0]')
 ```
+### 展开运算符
+- 指定一个数组，将他们打散后作为独立的参数传入函数
+``` javascript
+    let nums = [1,2,3,4,5]
+    Math.max(...nums) 
+    // 等价于 Math.max(1,2,3,4,5)
+    // ES5 中实现 Math.max.apply(Math,nums)
+    Math.min(...nums)
+
+    Math.max(...nums,10)
+    Math.min(...num,0)
+```
