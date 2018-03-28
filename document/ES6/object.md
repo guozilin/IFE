@@ -38,3 +38,33 @@
 ```
 
 ### 新增方法
+- Object.is()
+>* 接受两个参数，如果两个参数相等，则返回 true
+>* 与全等运算符类似，区别在于 +0、-0与 NaN 的判断
+```javascript
+    console.log(-0 === +0) //true
+    console.log(Object.is(+0,-0)) //false
+
+    console.log(NaN === NaN) //false
+    console.log(Object.is(NaN,NaN))  //true
+
+    console.log('5' === 5) //false
+    console.log(Object.is('5',5)) //false
+```
+
+- Object.assign()
+>* 一个对象接收来自另一个对象的属性和方法
+>* 接受一个目标对象和任意多个源对象，最终返回目标对象
+>* 如果多个源对象中存在同名的属性名，则排位靠后的覆盖前面的
+>* 该方法不能复制源对象的访问器属性
+```javascript
+    let receiver = {}
+    Object.assign(receiver,{name:'tracy',age:'27'},{name:'mark',sayName(){console.log(this.name)}})
+    receiver = {
+        name: 'mark',
+        age: 27,
+        sayName(){
+            console.log(this.name)
+        }
+    }
+```
