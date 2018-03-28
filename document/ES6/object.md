@@ -68,3 +68,14 @@
         }
     }
 ```
+
+### 重复的属性名
+- ES5 在严格模式下，属性名重复会报错
+- ES6 中不再进行重复性检查，每组重复最后都会取最后一个值
+``` javascript
+    let person = {
+        name: 'tracy',
+        name: 'mark'
+    }
+    person.name => 'mark'
+```
