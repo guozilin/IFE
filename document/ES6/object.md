@@ -133,3 +133,18 @@
 >* 对象原型的真实值存储在[[Prototype]]中
 >* Object.getPrototypeOf() 返回存储的值 
 >* Object.setPrototypeOf() 改变其中的值
+
+### Super 关键字
+
+>* 待补充
+
+### 正式的方法定义
+- ES6 中正式将方法定义为一个函数，对象内部会有一个[[HomeObject]]属性存储它
+``` javascript
+    let person = {
+        say(){
+            console.log('hello')
+        }
+    }
+```
+>* say()方法的[[HomeObject]]属性为 person
