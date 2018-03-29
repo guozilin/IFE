@@ -79,3 +79,25 @@
     }
     person.name => 'mark'
 ```
+
+### 自有属性的枚举顺序
+- Object.getOwnPropertyNames()
+- Reflect.ownkeys()
+- Object.assign()
+``` javascript
+    let obj = {
+        a:1,
+        0:1,
+        c:1,
+        2:1,
+        b:1,
+        1:1
+    }
+    obj.d = 1
+    Object.getOwnPropertyNames(obj)
+    // ["0", "1", "2", "a", "c", "b", "d"]
+```
+- 属性排序的基本规则
+>* 数字键按升序排列
+>* 字符串键按照它加入对象的顺序排列
+>* 所有 Symbol 键按照它加入对象的顺序排列
