@@ -93,11 +93,43 @@
         b:1,
         1:1
     }
+    obj.e = 1
     obj.d = 1
     Object.getOwnPropertyNames(obj)
-    // ["0", "1", "2", "a", "c", "b", "d"]
+    // ["0", "1", "2", "a", "c", "b", "e", "d"]
 ```
 - 属性排序的基本规则
 >* 数字键按升序排列
 >* 字符串键按照它加入对象的顺序排列
 >* 所有 Symbol 键按照它加入对象的顺序排列
+>* for...in ,Object.keys(),Json.stringify() 目前返回的顺序是没有明确说明
+
+### 增强对象原型
+- ES5 中，Object.getProptotypeOf()可以返回任意指定对象的原型
+- ES5 中，对象原型在实例化之后，保持不变
+- ES6 新增 Object.setPrototypeOf() 改变任意指定对象的原型
+- Object.setPrototypeOf() 接收两个参数，被改变原型的对象与替代第一个参数原型的对象
+```javascript
+    let person = {
+        sayHello(){
+            console.log('hello')
+        }
+    }
+    let gril = {
+        sayHello(){
+            console.log('hi')
+        }
+    }
+    let tracy = Object.create(person);
+    tracy.sayHello() // hello
+    Object.getPrototypeOf(tracy) === person //true
+
+    Object.setPrototypeOf(tracy,gril) // tracy 的原型对象已经被改变成 gril
+    tracy.sayHello() // hi
+    Object.getPrototypeOf(tracy) === gril    //true
+    Object.getPrototypeOf(tracy) === person    //false
+```
+
+>* 对象原型的真实值存储在[[Prototype]]中
+>* Object.getPrototypeOf() 返回存储的值 
+>* Object.setPrototypeOf() 改变其中的值
