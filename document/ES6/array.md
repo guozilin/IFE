@@ -28,16 +28,16 @@
 - Array.from()
 >* 将可迭代对象或者类数组对象转化为数组 主要是函数中的 arguments 以及 js 选择器返回的元素类数组
 ``` javascript
-function doSomething(){
-    let args = Array.from(arguments)
-    // 使用 args 
-}
-// 这是的 pObj 并不是真正的数组，不可以调用 forEach 方法进行遍历
-let pObj = document.getElementsByName('p'); // document.querySelectorAll('p')
-let pArr = Array.from(pObj);
-pArr.forEach((item)=>{
-    // dosomething
-})
+    function doSomething(){
+        let args = Array.from(arguments)
+        // 使用 args 
+    }
+    // 这是的 pObj 并不是真正的数组，不可以调用 forEach 方法进行遍历
+    let pObj = document.getElementsByName('p'); // document.querySelectorAll('p')
+    let pArr = Array.from(pObj);
+    pArr.forEach((item)=>{
+        // dosomething
+    })
 ```
 >* 可以传递一个函数作为Array.from()第二个参数， 该函数将数组的每一个值转化成别的值，存放到新数组中
 ``` javascript
@@ -113,6 +113,21 @@ nums.fill(2,1) => [1,2,2,2] // 从索引为1的开始用2填充，
 nums.fill(3,0,2) => [3,3,2,2] // 从索引为0的开始以3填充，到索引为2的结束填充，不包含2
 ```
 >* 如果传入的索引值为负数，则实际的索引值为 Array.length + 负数
+
+- includes()
+>* 判断一个数组是否包含指定的值，包含返回 true，否则返回 false
+``` javascript 
+    let site = ['smm','baidu','tengxun']
+    site.includes('smm')// true
+    site.includes('smm.anhuida')// false
+```
+>* 可接收两个参数，第二个为开始搜索的索引值
+``` javascript
+    let arr = ['a','b','c','d']
+    arr.includes('a',0) //true
+    arr.includes('a',2) //false
+```
+
 - copyWithin()
 >* 就收两个参数，第一个为开始填充的索引值，第二个为开始复制值的索引值
 ```javascript
