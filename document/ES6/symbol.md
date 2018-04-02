@@ -45,3 +45,18 @@
 ```
 >* Symbol 注册表类似于一个全局作用域的共享环境
 >* 建议在使用 Symbol 时，加上命名空间，减少命名冲突
+
+### Symbol 与类型强制转换
+>* Symbol 参与字符串拼接会报错
+>* Symbol 与每一个数学运算符混合使用都会报错
+>* Symbol 与 boolean 转化为 true
+```javascript
+    let uid = Symbol.for('uuid');
+    uid.toString() // Symbol(uuid)
+    uid + '' // 报错
+
+    uid + 1 // error
+
+    Boolean(uid) === true // true
+   
+```

@@ -53,7 +53,7 @@
 
 ### 作为值的函数
 ```javascript
-    1. 函数可以作为值来使用
+    // 1. 函数可以作为值来使用
     function doSomething(name,addname){
         return addname(name)
     }
@@ -62,7 +62,7 @@
     }
     var tt = doSomething('Tre',addName) // tracyTre
 
-    2. 函数也可以作为另一个函数的结果返回
+    // 2. 函数也可以作为另一个函数的结果返回
     function compare(name){
         return function(obj1,obj2){
             var val1 = obj1[name];
@@ -84,7 +84,7 @@
 ### 函数的内部属性
 
 ```javascript
-    1. arguments 类数组对象,arguments拥有一个属性callee，指针，指向该函数本身
+    // 1. arguments 类数组对象,arguments拥有一个属性callee，指针，指向该函数本身
     function factorial(num){
         if(num <=1 ){
             return 1
@@ -92,7 +92,7 @@
             return num * factorial(num-1)
         }
     }
-    等价于 
+    // 等价于 
     function factorial(num){
         if(num <=1 ){
             return 1
@@ -101,9 +101,9 @@
         }
     }
 
-    2. this 指向函数执行的环境对象，全局的为window
+    // 2. this 指向函数执行的环境对象，全局的为window
 
-    3. caller 保存着调用当前函数的函数的引用，全局作用域中为null
+    // 3. caller 保存着调用当前函数的函数的引用，全局作用域中为null
     eg: function a(){
         b()
     }
@@ -113,21 +113,19 @@
     }
     a(); // 输出的是 a()的源码，
 
-    注意： 严格模式下，arguments.callee 、caller都会报错，
+    // 注意： 严格模式下，arguments.callee 、caller都会报错，
 ```
 
 ### 函数的属性和方法
+- 属性：
+>* 1. length 函数参数的数量 无参数时为0
+>* 2. prototype 保存所有实例方法，基本上都是挂在prototype上。 prototy不可枚举，即不可以for...in列举出来
+
+- 方法：
+>* 1. apply() 两个参数： this，函数运行的作用域， arr，数组，可以是arguments
+>* 2. call() 多个参数： this，所有的参数都必须列举出来 传入
 ```javascript
-    属性：
-    1. length 函数参数的数量 无参数时为0
-    2. prototype 保存所有实例方法，基本上都是挂在prototype上。 prototy不可枚举，即不可以for...in列举出来
-
-    方法：
-    1. apply() 两个参数： this，函数运行的作用域， arr，数组，可以是arguments
-    2. call() 多个参数： this，所有的参数都必须列举出来 传入
-
-    apply(),call() 扩展函数运行的作用域
-    eg: 
+    apply(),call() //扩展函数运行的作用域
     var color = 'red'
     var o = { color: 'blue'}
     function getColor(){

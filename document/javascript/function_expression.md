@@ -44,7 +44,7 @@ function factorial(num){
         return num * arguments.callee(num - 1)
     }
 }
-然而在严格模式下，访问 callee 是不允许的
+// 然而在严格模式下，访问 callee 是不允许的
 ```
 - 通过命名一个函数表达式解决
 ```javascript
