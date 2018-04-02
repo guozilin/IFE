@@ -34,7 +34,7 @@
 ```javascript
 'use strict';
 var book = {
-    _year: 2017,
+    year: 2017,
     edition: 1
 }
 Object.defineProperty(book,'year',{
@@ -72,7 +72,7 @@ Object.defineProperties(person,{
 
 #### 读取属性的特性
 
-Object.getOwnPropertyDescriptor(属性所在对象,描述符)，返回值是一个对象
+- Object.getOwnPropertyDescriptor(属性所在对象,描述符)，返回值是一个对象
 ```javascript
 'use strict';
 var book = {};
@@ -102,7 +102,7 @@ desc.configurable => false
 ## 创建对象
 #### <span id="factory">1. 工厂模式</span>
 
-主要解决了创建多个相似对象的问题
+- 主要解决了创建多个相似对象的问题
 ```javascript
 function createPerson(name,age,job){
     var o = new Object()
@@ -116,7 +116,7 @@ function createPerson(name,age,job){
 var person1 = createPerson('tracy','27','engineer')
 var person2 = createPerson('tracy2','37','doctor')
 typeof(person1) => undefined 
-无法判断一个对象的类型
+//无法判断一个对象的类型
 ```
 
 #### 2. 构造函数模式

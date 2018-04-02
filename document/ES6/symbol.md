@@ -60,3 +60,23 @@
     Boolean(uid) === true // true
    
 ```
+
+### Symbol 属性检索
+>* Object.keys() 获取所有可枚举的属性 --不包含 Symbol 属性
+>* Object.getOwnPropertyNames() 获取所有的属性 --不包含 Symbol 属性
+>* Object.getOwnPropertySymbols() 获取所有的 Symbol 属性
+``` javascript
+    let uid = Symbol.for('uid')
+    let obj = {
+        [uid] : 123456,
+        name  : 'test symbol'
+    }
+    Object.defineProperty(obj,'age',{
+        enumberable: false,
+        value: '27'
+    })
+    let symbols = Object.getOwnPropertySymbols(obj) // [Symbol(uid)]
+    
+    let keys = Object.keys(obj) // ["name"]
+    let names = Object.getOwnPropertyNames(obj) // ["name", "age"]
+```
