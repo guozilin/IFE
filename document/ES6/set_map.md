@@ -69,3 +69,15 @@
 >* entries()：返回键值对的遍历器
 >* forEach()：使用回调函数遍历每个成员
 
+``` JavaScript
+    let set = new Set(['red', 'green', 'blue']);
+    for (let item of set.keys()) {
+        console.log(item);
+    }
+    for(let i of set.values()){
+        console.log(i)
+    }
+    for (let item of set.entries()) {
+        console.log(item);
+    }
+```
