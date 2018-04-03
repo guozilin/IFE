@@ -80,4 +80,58 @@
     for (let item of set.entries()) {
         console.log(item);
     }
+    // forEach 还可以接受第二个参数，表示绑定处理函数内部的this对象
+    set.forEach((value, key, obj) => {
+        console.log(key + ' : ' + value + ':' + obj)
+    })
+```
+- Set 遍历的应用
+>* 扩展运算符和 Set 结构相结合，就可以去除数组的重复成员,转化成数组
+``` javascript
+    {
+        let arr = [3, 5, 2, 2, 5, 5];
+        let unique = [...new Set(arr)];
+    }
+    {
+        let set = new Set(['red', 'green', 'blue']);
+        let arr = [...set];
+    }
+```
+>* 数组的map和filter方法也可以间接用于 Set 
+``` javascript
+    {
+        let set = new Set([1,2,3])
+        set = new Set([...set].filter(i => i > 1))
+        // {2,3}
+    }
+    {
+        let set = new Set([1,2,3,4])
+        set = new Set([...set].map(i => i * 2))
+        // {2,4,6,8}
+    }
+```
+>* 使用 Set 可以很容易地实现并集(Union)、交集(Intersect)和差集(Difference)
+``` javascript
+    let a = new Set([1,2,3,4]), b = new Set([3,4,5,6])
+    let union = new Set([...a,...b])
+    // {1,2,3,4,5,6}
+    let intersect = new Set([...a].filter(i => b.has(i)))
+    // {3,4}
+    let diff1 = new Set([...a].filter(i => !b.has(i))) //{1,2}
+    let diff2 = new Set([...b].filter(i => !a.has(i))) //{5,6}
+
+    let diff = new Set([...diff1, ...diff2]) // {1,2,5,6}
+```
+>* 改变原 Set 结构
+``` javascript
+    {
+        let set = new Set([1,2,3])
+        set = new Set([...set].map(i => i * 2))
+        // {2,4,6}
+    }
+    {
+        let set = new Set([1,2,3])
+        set = new Set(Array.from(set,i => i * 2))
+        // {2,4,6}
+    }
 ```
