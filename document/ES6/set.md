@@ -71,14 +71,22 @@
 
 ``` JavaScript
     let set = new Set(['red', 'green', 'blue']);
+    // 默认取得是 vaules
+    for (let item of set) {
+        console.log(item);
+    }
     for (let item of set.keys()) {
         console.log(item);
     }
+    // Set 的 key 与 value 是一致的
     for(let i of set.values()){
         console.log(i)
     }
     for (let item of set.entries()) {
         console.log(item);
+    }
+    for (let [i,j] of set.entries()) {
+        console.log(i,j);
     }
     // forEach 还可以接受第二个参数，表示绑定处理函数内部的this对象
     set.forEach((value, key, obj) => {
@@ -134,4 +142,16 @@
         set = new Set(Array.from(set,i => i * 2))
         // {2,4,6}
     }
+```
+
+## weakSet
+- 支持的数据类型不同，必须是对象
+- 弱引用，不会检测这个对象有没有被垃圾回收了
+- 没有 size 属性
+- 没有 clear 方法
+- 不可以被遍历
+``` javascript
+    let arg = {};
+    let ws = new WeakSet()
+    ws.add(ws)
 ```
