@@ -1,14 +1,14 @@
 {
     let obj = {
         name: 'tracy',
-        time: '1991-08-19',
+        time: '1990-09-15',
         _t : 123
     }
     let monitor = new Proxy(obj,{
         // 代理原始对象属性的读取
         get(target,key,monitor){
             // return Reflect.get(target,key)
-            return target[key].replace('1991','1999')
+            return target[key].replace('1990','1999')
         },
         // 修改属性值的代理
         set(target,key,value,monitor){
