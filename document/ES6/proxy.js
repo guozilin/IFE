@@ -4,6 +4,9 @@
         time: '1990-09-15',
         _t : 123
     }
+    /**
+     * 
+     */
     let monitor = new Proxy(obj,{
         // 代理原始对象属性的读取
         get(target,key,monitor){
