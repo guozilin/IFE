@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue study</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <p>message : {{msg}}</p>
+        <p v-once>v-once message : {{msg}}</p>
+        <hr>
+        <p> {{htmlStyle}}html 渲染</p>
+        <p v-html="htmlStyle"> html 渲染</p>
+        <hr>
+        <p v-bind:id="pId"> 属性绑定 id</p>
+        <p><button v-bind:disabled="isButtonDisabled">button</button></p>
+        <hr>
+        <p>表达式 {{ 1 + a}}</p>
+        <p> 三元表达式 {{ ok ? 'YES' : 'NO'}}</p>
+        <hr>
+        
+    </div>
+
+    <script>
+
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                msg:'第一个 message',
+                htmlStyle:'<span style="color:red">红色字体</span>',
+                pId : 'p-attr',
+                isButtonDisabled: false,
+                a: 10,
+                ok: true
+            }
+        })
+    
+    </script>
+    
+</body>
+</html>
