@@ -22,7 +22,13 @@
         <p>表达式 {{ 1 + a}}</p>
         <p> 三元表达式 {{ ok ? 'YES' : 'NO'}}</p>
         <hr>
-        
+        <p v-if="seen">Now you see me</p>
+        <p v-if="!seen">Now you see me</p>
+        <hr>
+        <a v-bind:href="url"> 我是百度链接 </a>
+        <a :href="url"> 我是百度链接 </a>
+        <p><button v-on:click="doSomething()">button</button></p>
+        <p><button @click="doSomething()">button</button></p>
     </div>
 
     <script>
@@ -35,7 +41,14 @@
                 pId : 'p-attr',
                 isButtonDisabled: false,
                 a: 10,
-                ok: true
+                ok: true,
+                seen: true,
+                url: 'https://www.baidu.com',
+            },
+            methods: {
+                doSomething(){
+                    console.log('我被点击了')
+                }
             }
         })
     

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue study</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        .static{
+            font-size: 28px;
+        }
+        .active{
+            background: lightblue;
+            color: white;
+        }
+        .text-danger{
+            color: white;
+            background: orangered;
+        }
+    </style>
+</head>
+<body>
+    <h1>class 和 style 绑定</h1>
+    <div id="app">
+        <p :class="{active: isActive}"> bind class use obj</p>
+        <p class="static" :class="{active: isActive,'text-danger':hasError}">与 class 组合</p>
+        <p :class="objClass">使用对象绑定</p>
+        <p :class="classObj">与computed 属性结合</p>
+        <p :class="[active,static]">绑定 class 列表</p>
+        <p :class="[{active: isActive},static,{'text-danger':hasError}]">数组与对象相结合</p>
+        <p :style="styleObj">style绑定与class 绑定类似</p>
+    </div>
+
+    <script>
+
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                isActive : false,
+                hasError: true,
+                objClass:{
+                    'active': true,
+                    'text-danger': false
+                },
+                active: 'active',
+                static: 'static',
+                danger: 'text-danger',
+                styleObj:{
+                    color: 'blue',
+                    background:'grey'
+                }
+            },
+            methods: {
+                
+            },
+            computed:{
+                classObj(){
+                    return {
+                        active: this.isActive,
+                        'text-danger':this.hasError
+                    }
+                }
+            }
+        })
+    
+    </script>
+    
+</body>
+</html>
