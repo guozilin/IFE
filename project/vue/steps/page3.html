@@ -10,6 +10,28 @@
 </head>
 <body>
     <div id="app">
+        <template v-if="loginType=='username'">
+            <label>用户名</label>
+            <input placeholder="请输入用户名">
+        </template>
+        <template v-else>
+            <p><label>邮箱</label></p>
+            <p><input placeholder="请输入邮箱"></p>
+        </template>
+        <p><button @click="toggleLoginType()">toggle</button></p>
+
+        <hr>
+
+        <template v-if="loginType2==='username'">
+            <label>用户名</label>
+            <input placeholder="请输入用户名" key="name">
+        </template>
+        <template v-else>
+            <p><label>邮箱</label></p>
+            <p><input placeholder="请输入邮箱" key="email"></p>
+        </template>
+        <p><button @click="toggleLoginType2()">toggle</button></p>
+        <h2></h2>
     </div>
 
     <script>
@@ -17,10 +39,16 @@
         var vm = new Vue({
             el: '#app',
             data:{
-                
+                loginType: 'username',
+                loginType2: 'username',
             },
             methods: {
-                
+                toggleLoginType(){
+                    this.loginType = this.loginType==='username'?'':'username'
+                },
+                toggleLoginType2(){
+                    this.loginType2 = this.loginType2==='username'?'':'username'
+                }
             },
             computed:{
                 
