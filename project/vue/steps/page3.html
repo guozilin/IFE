@@ -31,7 +31,12 @@
             <p><input placeholder="请输入邮箱" key="email"></p>
         </template>
         <p><button @click="toggleLoginType2()">toggle</button></p>
-        <h2></h2>
+        <hr>
+
+        <div v-for="(value, key, index) in object">
+        {{ index }}. {{ key }}: {{ value }}
+        </div>
+
     </div>
 
     <script>
@@ -41,6 +46,11 @@
             data:{
                 loginType: 'username',
                 loginType2: 'username',
+                object:{
+                    name: 'tracy',
+                    age: 27,
+                    sex: 'nv'
+                }
             },
             methods: {
                 toggleLoginType(){
