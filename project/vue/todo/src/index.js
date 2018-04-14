@@ -1,10 +1,7 @@
 import Vue from 'vue';
 import App from './app.vue';
 
-import './assist/styles/test.css';
-import './assist/styles/test-stylus.styl';
-
-
+import './assist/styles/global.styl'
 
 const root = document.createElement('div');
 
