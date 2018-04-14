@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue study</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+   
+</head>
+<body>
+    
+    <div id="app">
+       
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <hr>
+        <blog-page classlist="nav" title="blog header"></blog-page>
+        <blog-page classlist="body" title="blog body"></blog-page>
+        <blog-page classlist="footer" title="blog footer"></blog-page>
+        <hr>
+        <blog-page v-for="blog in blogs" :title="blog.title" :auth="blog.auth" :key="blog.id"></blog-page>
+    </div>
+
+    <script>
+        Vue.component('blog-page',{
+            props:['title','classlist'],
+            template:`<h2 :class="classlist">{{title}}</h2>`
+        })
+        Vue.component('button-counter',{
+            // 组件的 data 选项必须是一个函数
+            data(){
+                return {
+                    count: 0
+                }
+            },
+            template:`<button @click="count++">你点击了{{count}}次</button>`
+        })
+       
+        var vm = new Vue({
+            el: '#app',
+            data:{
+               blogs:[
+                   {id:1,title:'周一',auth:'guozl'},
+                   {id:2,title:'周二',auth:'guozl'},
+                   {id:3,title:'周三',auth:'guozl'},
+                   {id:4,title:'周四',auth:'guozl'}
+               ]
+            },
+            methods: {
+               
+            },
+            computed:{
+                
+            }
+        })
+    
+    </script>
+    
+</body>
+</html>
