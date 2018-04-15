@@ -36,7 +36,9 @@
             toggleStatus(state){
                 this.$emit('toggle',state)
             },
-            clearAllCompleted(){}
+            clearAllCompleted(){
+                this.$emit('clearAll')
+            }
         }
     }
 </script>

@@ -6,8 +6,8 @@
             autofocus
             placeholder="接下来做什么"
                 @keyup.enter="addTodo">
-        <Item v-for="todo in todos" :key="todo.id" :todo="todo" @del="deleteTodo"></Item>
-        <Tabs :filter="filter" :todos="todos" @toggle="toggleStatus"></Tabs>
+        <Item v-for="todo in filteredTodos" :key="todo.id" :todo="todo" @del="deleteTodo"></Item>
+        <Tabs :filter="filter" :todos="todos" @toggle="toggleStatus" @clearAll="clearAllCompleted"></Tabs>
     </section>
 </template>
 
@@ -27,20 +27,35 @@
                 filter: 'all'
             }
         },
+        computed:{
+            filteredTodos(){
+                if(this.filter==='all'){
+                    return this.todos;
+                }
+                const completed = this.filter === 'completed'
+                return this.todos.filter(todo=>todo.completed === completed)
+            }
+        },
         methods: {
             addTodo(e){
-                this.todos.unshift({
-                    id : id ++,
-                    content: e.target.value.trim(),
-                    completed: false
-                })
-                e.target.value = '';
+                if(e.target.value.trim()){
+
+                    this.todos.unshift({
+                        id : id ++,
+                        content: e.target.value.trim(),
+                        completed: false
+                    })
+                    e.target.value = '';
+                }
             },
             deleteTodo(id){
                 this.todos.splice(this.todos.findIndex((todo)=>todo.id === id),1)
             },
             toggleStatus(status){
                 this.filter = status
+            },
+            clearAllCompleted(){
+                return this.todos.filter(todo => !todo.completed)
             }
         }
     }
