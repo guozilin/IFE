@@ -1,6 +1,6 @@
 <template>
     <div class="helper">
-        <span class="left">2 items left</span>
+        <span class="left">{{unFinishedTodosLength}} items left</span>
         <span class="tabs">
             <span v-for="state in status" :key="state" :class="[state,filter===state? 'actived':'']" @click="toggleStatus(state)">{{state}}</span>
         </span>
@@ -10,19 +10,32 @@
 
 <script>
     export default {
+        // 接收父组件传递的数据
         props:{
             filter:{
                 type: String,
                 required: true,
+            },
+            todos:{
+                type: Array,
+                required: true
             }
         },
         data(){
             return {
                 status:['all','active','completed']
             }
+        },  
+        // 计算属性
+        computed:{
+            unFinishedTodosLength(){
+                return this.todos.filter(todo=>!todo.completed).length
+            }
         },
         methods: {
-            toggleStatus(){},
+            toggleStatus(state){
+                this.$emit('toggle',state)
+            },
             clearAllCompleted(){}
         }
     }
