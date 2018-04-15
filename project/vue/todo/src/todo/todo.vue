@@ -55,7 +55,7 @@
                 this.filter = status
             },
             clearAllCompleted(){
-                return this.todos.filter(todo => !todo.completed)
+                return this.todos = this.todos.filter(todo => !todo.completed)
             }
         }
     }
