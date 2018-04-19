@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue deep study</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <blog-item post-title="我的第一篇博客"></blog-item>
+       <blog-item :post-title="blogTitle"></blog-item>
+       <blog-item2 v-bind="post"></blog-item2>
+    </div> 
+    <script>
+        Vue.component('blog-item',{
+            props:['postTitle'],
+            template:`<h2>{{ postTitle }}</h2>`
+        })
+        Vue.component('blog-item2',{
+            props:['post'],
+            template:`<h2>{{ post}}-{{ post }}</h2>`
+        })
+
+        let vm = new Vue({
+            el: '#app',
+            data:function(){
+                return {
+                    blogTitle:'My first blog',
+                    post:{
+                        id: 1,
+                        title:'我的第二篇博客'
+                    }
+                }
+            }
+        })
+
+    </script> 
+</body>
+</html>
