@@ -12,6 +12,11 @@
        <blog-item post-title="我的第一篇博客"></blog-item>
        <blog-item :post-title="blogTitle"></blog-item>
        <blog-item2 v-bind="post"></blog-item2>
+       <base-input
+            v-model="username"
+            class="username-input"
+            placeholder="Enter your username"
+            ></base-input>
     </div> 
     <script>
         Vue.component('blog-item',{
@@ -22,6 +27,20 @@
             props:['post'],
             template:`<h2>{{ post}}-{{ post }}</h2>`
         })
+        Vue.component('base-input', {
+            inheritAttrs: false,
+            props: ['label', 'value'],
+            template: `
+                <label>
+                {{ label }}
+                <input
+                    v-bind="$attrs"
+                    v-bind:value="value"
+                    v-on:input="$emit('input', $event.target.value)"
+                >
+                </label>
+            `
+        })
 
         let vm = new Vue({
             el: '#app',
@@ -31,7 +50,8 @@
                     post:{
                         id: 1,
                         title:'我的第二篇博客'
-                    }
+                    },
+                    username: 'tracy'
                 }
             }
         })
