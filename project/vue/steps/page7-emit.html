@@ -12,6 +12,18 @@
         <p>{{total}}</p>
         <button-counter @increment="incrementTotal"></button-counter>
         <button-counter v-on:increment="incrementTotal" :title="title"></button-counter>
+        <hr>
+        <test-component @click.native="dosomething"></test-component>
+        <test-component @click="dosomething"></test-component>
+        <hr>
+        <sync-component @foo="word"></sync-component>
+        <sync-component @foo.sync="word"></sync-component>
+        <input type="text" v-model="word">
+        <div id="app">
+                <div>${{price}}</div>
+                <currency-input v-model="price"></currency-input>
+              </div>
+
     </div>
     <script>
         Vue.component('button-counter',{
@@ -30,23 +42,82 @@
             methods:{
                 incrementTotal:function(){
                     this.counter++;
-                    this.$emit('increment')
+                    this.$emit('increment',this.counter)
                     // 暴露给父组件需要监听的方法
                 }
             }
         })
+        Vue.component('test-component',{
+            template:`<button type="button">button</button>`,
+            methods:{}
+        })
+        Vue.component('sync-component',{
+            props:{
+                foo: {
+                    type:String,
+                    // default: 'nothing is foo'
+                }
+            },
+            template:`<input type="text" v-model="foo" >`,
+            watch:{
+                foo(newValue,oldValue){
+                    this.$emit('update-foo',newValue)
+                }
+            }
+        })
+
+        Vue.component('currency-input', {
+  template: `
+    <span>
+      <input
+        ref="input"
+        v-bind:value="value"
+        v-on:input="updateValue($event.target.value)"
+      >
+    </span>
+  `,
+  props: ['value'], // 显式接收一个 value 的 prop
+  methods: {
+    // 不是直接更新值，而是使用此方法来对输入值进行格式化和位数限制
+    updateValue: function (value) {
+      console.log(value)
+      var formattedValue = value
+        // 删除两侧的空格符
+        .trim()
+        // 保留 2 位小数
+        .slice(
+          0,
+          value.indexOf('.') === -1
+            ? value.length
+            : value.indexOf('.') + 3
+        )
+      // 如果值尚不合规，则手动覆盖为合规的值
+      if (formattedValue !== value) {
+        this.$refs.input.value = formattedValue
+      }
+      // 通过 input 事件带出数值
+      this.$emit('input', Number(formattedValue))
+    }
+  }
+})
 
         let vm = new Vue({
             el: '#app',
             data:()=>{
                 return {
                     total : 0,
-                    title: '我是 title'
+                    title: '我是 title',
+                    word:'',
+                    price: 10
+
                 }
             },
             methods:{
-                incrementTotal:()=>{
-                    this.total ++
+                incrementTotal:(counter)=>{
+                    this.total = counter
+                },
+                dosomething:()=>{
+                    alert('绑定原生的 click')
                 }
             }
         })
