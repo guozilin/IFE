@@ -11,11 +11,17 @@
     <div id="app">
         <p>{{total}}</p>
         <button-counter @increment="incrementTotal"></button-counter>
-        <button-counter v-on:increment="incrementTotal"></button-counter>
+        <button-counter v-on:increment="incrementTotal" :title="title"></button-counter>
     </div>
     <script>
         Vue.component('button-counter',{
-            template:`<button v-on:click="incrementTotal">{{ counter }}</button>`,
+            props:{
+                title:{
+                    type: String,
+                    default:'title'
+                }
+            },
+            template:`<button v-on:click="incrementTotal" :title="title">{{ counter }}</button>`,
             data: function(){
                 return {
                     counter: 0
@@ -35,6 +41,7 @@
             data:()=>{
                 return {
                     total : 0,
+                    title: '我是 title'
                 }
             },
             methods:{
