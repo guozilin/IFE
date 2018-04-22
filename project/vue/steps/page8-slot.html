@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>    
+</head>
+<body>
+
+    <div id="app">
+        <app-layout>
+            <h1 slot="header">这是一个标题</h1>
+            <p>main的第一段</p>
+            <p>main的第二段</p>
+            <footer slot="footer"> 底部</footer>
+        </app-layout>
+    </div>
+    
+    <script>
+        Vue.component('app-layout',{
+            template:`
+            <div class="container">
+                <header>
+                    <slot class="header"></slot>
+                </header>
+                <main>
+                    <slot></slot>
+                </main>
+                <footer>
+                    <slot name="footer"></slot>
+                </footer>
+            </div>
+            `
+        })
+        let vm = new Vue({
+
+        })
+    </script>
+</body>
+</html>
