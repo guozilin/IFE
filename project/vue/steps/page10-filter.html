@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue filter</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>    
+</head>
+<body>
+    <div id="app">
+        <div>
+            {{ 'hello' | uppercase }}
+        </div>
+        <my-component :name="UserName"></my-component>
+    </div>
+    <script>
+        Vue.filter('uppercase',(value)=>{
+            if(!value){
+                return ''
+            }
+            value = value.toString()
+            return value.charAt(0).toUpperCase() + value.slice(1)
+        })
+        Vue.component('my-component',{
+            props:['name'],
+            template: `<div>{{ name | capitalize }}</div>`,
+            filters:{
+                capitalize: (value)=>{
+                    if(!value){
+                        return ''
+                    }
+                    value = value.toString()
+                    return value.charAt(0).toUpperCase() + value.slice(1)
+                }
+            }
+        })
+        let vm = new Vue({
+            el: '#app',
+            data: ()=>{
+                return {
+                    UserName: 'wahaha'
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
