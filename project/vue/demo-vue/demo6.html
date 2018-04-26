@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>style 与 class</title>
+    <script src="./vue.js"></script>
+    <style>
+        .active{
+            color: red;
+        }
+        .big-font{
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div @click="handleDivClick" :class="{active: isActive}">
+            hello Vue!            
+        </div>
+        <hr>
+        <div @click="handleDivClick1" :class="[activeList,bigFont]">
+                hello Vue!            
+        </div>
+        <hr>
+        <div @click="handleDivClick2" :style="styleObj">
+                hello Vue!            
+        </div>
+        <hr>
+        <div @click="handleDivClick3" :style="[redColor,{fontWeight:'700'}]">
+                hello Vue!            
+        </div>
+    </div>
+
+    <script>
+    
+        let vm = new Vue({
+            el: '#app',
+            data(){
+                return {
+                    isActive: false,
+                    activeList: 'active',
+                    bigFont: 'big-font',
+                    styleObj:{
+                        color: ''
+                    },
+                    redColor:{
+                        color: ''
+                    }
+                }
+            },
+            methods:{
+                handleDivClick(){
+                    this.isActive = !this.isActive;
+                },
+                handleDivClick1(){
+                    this.activeList = this.activeList === 'active' ? '' : 'active'
+                },
+                handleDivClick2(){
+                    this.styleObj.color = this.styleObj.color === 'red' ? '' : 'red'
+                },
+                handleDivClick3(){
+                    this.redColor.color = this.redColor.color === 'red' ? '' : 'red'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
