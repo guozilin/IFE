@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>计算属性 方法 监听器</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+       computed: {{fullname}} {{age}}
+       <hr>
+       methods: {{ fullName() }} {{ age }}
+       <hr>
+       watch: {{ full }} {{age}}
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data(){
+                return {
+                    firstName: 'Tracy',
+                    lastName: 'Mark',
+                    full: 'Tracy Mark',
+                    age: 27
+                }
+            },
+            watch:{
+                // 也有缓存 无关的值变化不会引起重新渲染，但没有 computed 高效
+                // 需要监听的哪些数据的变化
+                firstName(){
+                    console.log('watch 执行了');
+                    this.full = this.firstName + ' ' + this.lastName
+                },
+                lastName(){
+                    console.log('watch 执行了');
+                    this.full = this.firstName + ' ' + this.lastNam
+                }
+            },
+            methods:{
+                fullName(){
+                    // 当页面任意数据改变时，都会重新渲染 无缓存
+                    console.log('methods 执行了')
+                    return this.firstName + ' ' + this.lastName
+                }
+            },
+            computed:{
+                fullname(){
+                    // 计算属性有缓存特性，当无关的值改变时 不会重新渲染页面数据
+                    console.log('computed 执行了')
+                    return this.firstName + ' ' + this.lastName
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
