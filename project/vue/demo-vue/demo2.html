@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <input type="text" v-model="inputValue"> <button type="button" @click="buttonClick">submit</button>
+         <ul>
+             <li v-for="(item,index) in list" :key="index">{{item}}-{{index}}</li>
+         </ul>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data:{
+                inputValue:'',
+                list:[
+                    '第一课内容',
+                    '第二课内容'
+                ]
+            },
+            methods:{
+                buttonClick(){
+                    if(this.inputValue.trim()){
+                        this.list.push(this.inputValue.trim());
+                        this.inputValue=''
+                    }
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>

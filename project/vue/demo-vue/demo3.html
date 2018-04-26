@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+
+    <script>
+        let msg = 'hello msg Object.freeze()'
+        let obj = {
+            msg:'hello msg'
+        }
+        Object.freeze(obj)
+        let vm = new Vue({
+            el: '#app',
+            template:`<div>{{obj.msg}}</div>`,
+            data(){
+                return {
+                    obj: obj
+                }
+            },
+            beforeCreate(){
+                console.log('beforeCreate')
+            },
+            created(){
+                console.log('create')
+            },
+            beforeMount(){
+                console.log('beforeMount')
+            },
+            mounted(){
+                console.log('mounted')
+            },
+            beforeDestroy(){
+                console.log('beforeDestroy')
+            },
+            destroyed(){
+                console.log('destroyed')
+            },
+            beforeUpdate(){
+                console.log('beforeUpdate')
+            },
+            updated(){
+                console.log('updated')
+            }
+        })
+    </script>
+</body>
+</html>
