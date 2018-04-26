@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>计算属性的 getter 和 setter</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ fullName }}
+        <!-- 首先找 data 里有木有，再找 computed 属性里有木有 -->
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data(){
+                return {
+                    firstName: 'Tracy',
+                    lastName: 'Mark'
+                }
+            },
+            computed:{
+                fullName:{
+                    // 获取 fullName 时调用
+                    get:function(){
+                        return this.firstName + ' ' + this.lastName
+                    },
+                    // 设置 fullName 调用
+                    set:function(value){
+                        var arr = value.split(' ');
+                        this.firstName = arr[0];
+                        this.lastName = arr[1];
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
