@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue 条件渲染</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <!-- false 时 不渲染到页面上 -->
+        <h4 v-if="!isShow" class="if">hello world</h4>
+        <!-- display: none 更好的性能 -->
+        <h4 v-show="isShow" class="show">hello world</h4>
+        <hr>
+        <!-- v-if v-else 中间不可以有标签隔断 -->
+        <div v-if="isShow">v-if show</div>
+        <div v-else>v-else show</div>
+
+        <hr>
+
+        <div v-if="word === 'a'">This is A</div>
+        <div v-else-if="word === 'b'">This is B</div>
+        <div v-else>This is others</div>
+
+        <hr>
+        v-if 不会清除之前的输入，会复用之前的组件
+        <div v-if="login">
+            用户名：<input type="text">
+        </div>
+        <div v-else>
+            邮箱： <input type="text">
+        </div>
+        <button type="button" @click="ToggleLogin">toggle login</button>
+        <hr>
+        v-if 与 key 清除输入框内的内容 重新渲染
+        <div v-if="login1">
+            用户名：<input type="text" key="username">
+        </div>
+        <div v-else>
+            邮箱： <input type="text" key="email">
+        </div>
+        <button type="button" @click="ToggleLogin1">toggle login</button>
+            
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data(){
+                return {
+                    isShow: false,
+                    word: 'a',
+                    login: true,
+                    login1: true
+                }
+            },
+            methods:{
+                ToggleLogin(){
+                    this.login = !this.login
+                },
+                ToggleLogin1(){
+                    this.login1 = !this.login1
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
