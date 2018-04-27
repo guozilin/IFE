@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue set </title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <span v-for="item in list" :key="item">{{item}},</span>
+        </div>
+        <div>
+            <p v-for="(item,key,index) in obj" :key="key">{{key}}-{{item}}</p>
+        </div>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data:{
+                list:[
+                    1,2,3,4
+                ],
+                obj:{
+                    name: 'tracy',
+                    age: 27
+                }
+            }
+        })
+        // 控制台可以通过调用 vm.$set(对象，key,value)操作数组或者对象
+        // 改变数组三种方式 1，改变引用 2，用 vue 提供的7个方法，3，使用 set
+        // 改变对象2种方式 1，改变引用 2 使用 set 方法
+    </script>
+</body>
+</html>
