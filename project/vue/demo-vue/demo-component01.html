@@ -35,6 +35,11 @@
         <div ref="hello" @click="handleDom"> hello vue 1</div>
         <!-- 如果有相同的 ref 则取最后一个 -->
         <!-- <div ref="hello" @click="handleDom"> hello vue 2</div> -->
+
+        <hr>
+        <counter @change="counterChange" ref="one" ></counter>
+        <counter @change="counterChange" ref="two" ></counter>
+        <div>{{total}}</div>
     </div>
 
     <script>
@@ -58,12 +63,36 @@
                 </tr>
             `
         })
+
+        Vue.component('counter',{
+            data(){
+                return {
+                    counter: 0
+                }
+            },
+            template:`
+                <div @click="counterClick">{{counter}}</div>
+            `,
+            methods:{
+                counterClick(){
+                    this.counter ++;
+                    this.$emit('change')
+                }
+            }
+        })
+
         // vue 操作 dom
         let  vm = new Vue({
             el: '#app',
+            data:{
+                total: 0
+            },
             methods: {
                 handleDom(){
                     console.log(this.$refs.hello)
+                },
+                counterChange(){
+                    this.total = this.$refs.one.counter + this.$refs.two.counter
                 }
             }
         })
