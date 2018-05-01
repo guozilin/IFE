@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> vue 组件中的细节点</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <tbody>
+                <tr-row></tr-row>
+                <tr-row></tr-row>
+                <tr-row></tr-row>
+            </tbody>
+        </table>
+        <!-- is 标签  -->
+        <table>
+            <tbody>
+                <!-- 类似的 ul ol li ,dt dl dd  ,select option -->
+                <tr is="tr-row"></tr>
+                <tr is="tr-row"></tr>
+                <tr is="tr-row"></tr>
+            </tbody>
+        </table>
+        <hr>
+        <table>
+            <tbody>
+                <tr is="row"></tr>
+            </tbody>
+        </table>
+        <hr>
+        <div ref="hello" @click="handleDom"> hello vue 1</div>
+        <!-- 如果有相同的 ref 则取最后一个 -->
+        <!-- <div ref="hello" @click="handleDom"> hello vue 2</div> -->
+    </div>
+
+    <script>
+        Vue.component('tr-row',{
+            template:`
+                <tr>
+                    <td>this is a row</td>
+                </tr>
+            `
+        })
+        // 子组件的 data 必须是一个方法 而不是一个对象，每个子组件都是一个独立的组件 互不影响
+        Vue.component('row',{
+            data(){
+                return {
+                    content: 'this is a content'
+                }
+            },
+            template:`
+                <tr>
+                    <td>{{content}}</td>
+                </tr>
+            `
+        })
+        // vue 操作 dom
+        let  vm = new Vue({
+            el: '#app',
+            methods: {
+                handleDom(){
+                    console.log(this.$refs.hello)
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
