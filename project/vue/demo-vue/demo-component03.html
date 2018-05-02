@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue component props 与 非props</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <parent></parent>
+    </div>
+    <script>
+        let child = {
+            template: `
+                <div> child </div>
+            `
+        }
+        let parent = {
+            components:{
+                child
+            },
+            template: `
+                <div> 
+                    parent
+                    <child></child>
+                    <hr>
+                    <child></child>                    
+                </div>
+            `
+        }
+        let vm = new Vue({
+            el: '#app',
+            data:{
+
+            },
+            components:{
+                parent,
+            }
+        })
+    </script>
+
+</body>
+</html>
