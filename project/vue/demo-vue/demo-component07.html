@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue 非父子组件传值</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <child content="guozl"></child>
+        <button-child ></button-child>
+    </div>
+
+    <script>
+        Vue.prototype.bus = new Vue()
+        Vue.component('child',{
+            props:{
+                content:{
+                    type: String
+                }
+            },
+            data(){
+                return{
+                    name: this.content
+                }
+            },
+            template: '<div>{{name}}</div>',
+            mounted(){
+                this.bus.$on('change',()=>{
+                    console.log(this)
+                    this.name = 'alice'
+                })
+            }
+        })
+        Vue.component('button-child',{
+            template: '<button type="button" @click="handleClick">button</button>',
+            methods:{
+                handleClick(){
+                    this.bus.$emit('change')
+                    // alert('click')
+                }
+            }
+        })
+        let vm = new Vue({
+            el: '#app',
+            data:{
+
+            }
+        })
+    </script>
+    
+</body>
+</html>
