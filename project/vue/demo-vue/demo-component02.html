@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue component 传值</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <counter :count="1" @inc="incCounter"></counter>
+        <counter :count="2" @inc="incCounter"></counter>
+        <div>{{total}}</div>
+    </div>
+
+    <script>
+        let counter = {
+            props:['count'],
+            data(){
+                return {
+                    number: this.count
+                }
+            },
+            template: `
+                <div @click="incCount">{{number}}</div>   
+            `,
+            methods:{
+                incCount(){
+                    this.number ++;
+                    this.$emit('inc',1)
+                }
+            }
+        }
+        let vm = new Vue({
+            el: '#app',
+            data:{
+                total: 3
+            },
+            methods: {
+                incCounter(step){
+                    this.total += step
+                }
+            },
+            components:{
+                counter
+            }
+        })
+    </script>
+</body>
+</html>
