@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue 单向数据流</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <parent></parent>
+    </div>
+
+    <script>
+        let childNode = {
+            template: `
+                <div class="child">
+                    <div>
+                    <span>子组件数据</span>
+                    <input v-model="childMsg">
+                    </div>
+                    <p>{{childMsg}}</p>
+                </div>
+            `,
+            props:['childMsg']
+        }
+
+        let childTwo = {
+            template: `
+                <div class="child2">
+                    <div>
+                    <span>子组件2数据</span>
+                    <input v-model="childMessage">
+                    </div>
+                    <p>{{childMessage}}</p>
+                </div>
+            `,
+            props:['childData'],
+            data(){
+                return {
+                    childMessage: this.childData
+                }
+            }
+        }
+        let childThree = {
+            template: `
+                <div class="child3">
+                    <div>
+                    <span>子组件3数据</span>
+                    <input v-model="compurtedData">
+                    </div>
+                    <p>{{compurtedData}}</p>
+                </div>
+            `,
+            props:['threeData'],
+            data(){
+                return{
+                    compurtedData:this.threeData
+                }
+            },
+            // computed:{
+            //     compurtedData(){
+            //         return this.threeData
+            //     }
+            // },
+            watch:{
+                threeData(){
+                    this.compurtedData = this.threeData
+                }
+            }
+            // [Vue warn]: Computed property "compurtedData" was assigned to but it has no setter.
+            
+        }
+        let parentNode = {
+            template: `
+                <div class="parent">
+                    <div>
+                    <span>父组件数据</span>
+                    <input v-model="msg">
+                    </div>
+                    <p>{{msg}}</p>
+                    <p>不允许更改父组件传入的值</p>
+                    <child :child-msg="msg"></child>
+                    <hr>
+                    <p>定义一个局部变量，并用 prop 的值初始化它</p>
+                    <childTwo :child-data="msg"></childTwo>
+                    <p>计算属性</p>
+                    <childThree :three-data="msg"></childThree>
+                </div>
+            `,
+            components: {
+                'child': childNode,
+                childTwo,
+                childThree
+            },
+            data(){
+                return {
+                    'msg':'match'
+                }
+            }
+        };
+
+        let vm = new Vue({
+            el: '#app',
+            data:{
+
+            },
+            components: {
+                'parent': parentNode
+            }
+        })
+    </script>
+    
+</body>
+</html>
