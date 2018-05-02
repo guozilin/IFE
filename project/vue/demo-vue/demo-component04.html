@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue component data-props</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <example :username="'guozl1'"></example>
+    </div>
+
+    
+
+    <script>
+        let example = {
+            name: 'Example',
+            template:`
+            <div>
+                用户名: <input type="text" placeholder="username" v-model="username">
+                <br>
+                手机号码: <input type="text" placeholder="cellphone" v-model="cellphone">
+                <br>
+                价格: {{ price }} 元
+                <br>
+                <ul>
+                    <li v-for="item of products" :key="item.id">{{item.name}}</li>
+                </ul>
+                <br>
+                check: <input type="text" v-model="checkPrice">
+            </div>
+            `,
+            props:{
+                username:{
+                    type: String,
+                    require: true,
+                    default: 'guozl'
+                },
+                cellphone:{
+                    type: Number,
+                    default: 18121122292
+                },
+                price: {
+                    type: [Number,String],
+                    default: 100
+                },
+                products:{
+                    type: Array,
+                    default: function(){
+                        return [{id: '1234',name:'tracy'}]
+                    }
+                },
+                checkPrice:{
+                    type: Number,
+                    validator: function(value){
+                        if(value > 10){
+                            return value
+                        }
+                        return 10
+                    }
+                }
+            }
+        }
+        let vm = new Vue({
+            el: '#app',
+            data:{
+
+            },
+            components:{
+                example,
+            }
+        })
+    </script>
+    
+</body>
+</html>

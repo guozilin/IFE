@@ -9,34 +9,62 @@
 </head>
 <body>
     <div id="app">
-        <parent></parent>
+        <input type="text" name="" v-model="parentData">
+        <parent :parent-data="parentData" :child-data="childData"></parent>
+        <hr>
+        <temlprop :message="122"></temlprop>
+        <temlprop message="122"></temlprop>
+        <temlprop :message="{a:9}"></temlprop>
+        <temlprop :message="[1,2]"></temlprop>
+        <temlprop :message="uuid"></temlprop>
     </div>
     <script>
+        const uuid = Symbol.for('uuid')
         let child = {
+            // props:['childData'],
+            props:['child-data'],
             template: `
-                <div> child </div>
+                <div> child - {{childData.name}} <br> <input v-model="childData.name"> </div>
             `
         }
         let parent = {
+            props:['parent-data','child-data'],
             components:{
                 child
             },
             template: `
                 <div> 
-                    parent
-                    <child></child>
+                    parent-{{parentData}}
+                    <child :child-data="childData"></child>
                     <hr>
-                    <child></child>                    
+                    <child :child-data="childData"></child>                    
                 </div>
             `
         }
+        let temlprop = {
+            props:['message'],
+            template: `
+                <div> 输入的{{message}}属性 类型是： {{ typeofthis }}</div>
+            `,
+            computed: {
+                typeofthis(){
+                    return typeof this.message
+                }
+            }
+        }
+
         let vm = new Vue({
             el: '#app',
             data:{
-
+                parentData: '我是最外层的数据',
+                childData:{
+                    name: 'child-name'
+                },
+                uuid: uuid
             },
             components:{
                 parent,
+                temlprop
             }
         })
     </script>
