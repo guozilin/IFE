@@ -9,7 +9,7 @@
 </head>
 <body>
     <div id="app">
-        <example :username="'guozl1'"></example>
+        <example :username="'guozl1'" :checkprice="100" :products="products"></example>
     </div>
 
     
@@ -29,7 +29,7 @@
                     <li v-for="item of products" :key="item.id">{{item.name}}</li>
                 </ul>
                 <br>
-                check: <input type="text" v-model="checkPrice">
+                check: <input type="text" v-model="checkprice">
             </div>
             `,
             props:{
@@ -52,13 +52,14 @@
                         return [{id: '1234',name:'tracy'}]
                     }
                 },
-                checkPrice:{
+                checkprice:{
                     type: Number,
                     validator: function(value){
+                        console.log(value)
                         if(value > 10){
-                            return value
+                            return true
                         }
-                        return 10
+                        return false
                     }
                 }
             }
@@ -66,7 +67,11 @@
         let vm = new Vue({
             el: '#app',
             data:{
-
+                products:[
+                    {id: 101,name: 'tracy1'},
+                    {id: 102,name: 'tracy2'},
+                    {id: 103,name: 'tracy3'},
+                ]
             },
             components:{
                 example,
