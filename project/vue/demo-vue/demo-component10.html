@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue 动态组件与 v-once</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 如果不加 v-once 则每次都会销毁组件并重新创建一个组件； v-once 会把组件第一次渲染的时候保存在内存里 性能更好 -->
+        <!-- <child-one v-if="type==='child-one'" v-once></child-one>
+        <child-two v-if="type==='child-two'" v-once></child-two> -->
+        <component :is="type"></component>
+        <button type="button" @click="toggleShow">toggle Show</button>
+
+    </div>
+
+    <script>
+
+        Vue.component('child-one',{
+            template:'<div>child-one</div>'
+        })
+        Vue.component('child-two',{
+            template:'<div>child-two</div>'
+        })
+        let vm = new Vue({
+            el: '#app',
+            data:{
+                type:'child-one'
+            },
+            methods: {
+                toggleShow(){
+                    this.type = this.type === 'child-one' ? 'child-two' : 'child-one';
+                }
+            }
+        })
+    </script>
+</body>
+</html>
