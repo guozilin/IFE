@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue component 插槽 slot</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        <slot-test>
+            <div>
+                body main hahha 
+            </div>
+        </slot-test>
+        <hr>
+        <slot-test></slot-test>
+        <h3>具名插槽</h3>
+        <slot-name></slot-name>
+        <hr>
+        <slot-name> 
+            <slot slot="header">who am i header</slot>
+            <slot slot="footer">who am i footer</slot>
+            <h5>我应该走默认插槽走吧</h5>
+        </slot-name>
+        
+    </div>
+    
+    <script>
+        Vue.component('slot-test',{
+            template: `
+                <div class="page">
+                    <header>我是 header </header>
+                    <main><slot>你好 我是默认值</slot></main>
+                    <footer>我是 footer </footer>
+                </div>
+            `
+        })
+        Vue.component('slot-name',{
+            template: `
+                <div class="page">
+                    <header><slot name="header">我是 header 默认值 </slot></header>
+                    <main>我是主题内容</main>
+                    <footer><slot name="footer">我是 footer 默认值</slot></footer>
+                    <slot></slot>
+                </div>
+            `
+        })
+        let vm = new Vue({
+            el: '#app',
+            data:{
+
+            }
+        })
+    </script>
+</body>
+</html>
