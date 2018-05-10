@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue 动画</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <style>
+    .v-enter-active, .v-leave-active {
+        transition: color 10s;
+    }
+    /* .v-enter, .v-leave-to {
+        opacity: 0;
+    } */
+    .v-enter{
+        color: #333;
+    }
+    .v-enter-active{
+        color: blue
+    }
+    .v-enter-to{
+        color: yellow
+    }
+    .v-leave{
+        color: orange
+    }
+    .v-leave-to{
+        color: brown
+    }
+    .v-leave-active{
+        color: #f00;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="show = !show">Toggle</button>
+        <transition>
+            <p v-show="show">hello</p>
+        </transition>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data(){
+                return {
+                    show: false
+                }
+            }
+        })
+    </script>
+</body>
+</html>

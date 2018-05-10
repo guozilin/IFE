@@ -35,6 +35,7 @@
         // 或者，只是一个组件配置对象。
         // 我们晚点再讨论嵌套路由。
         const routes = [
+            { path: '/'   , component: Foo },
             { path: '/foo', component: Foo },
             { path: '/bar', component: Bar }
         ]
@@ -48,9 +49,22 @@
         // 4. 创建和挂载根实例。
         // 记得要通过 router 配置参数注入路由，
         // 从而让整个应用都有路由功能
-        const app = new Vue({
-            router
-        }).$mount('#app')
+        // const app = new Vue({
+        //     router
+        // }).$mount('#app')
+
+        let vm = new Vue({
+            el: '#app',
+            router,
+            data(){
+                return {
+                    paras: {}
+                }
+            },
+            mounted(){
+                console.log(this.$router)
+            }
+        })
 
     </script> 
 </body>
