@@ -1,10 +1,13 @@
 <template>
 	<div class="hello">
-		{{count}}
+		{{counter}}
+		<br>
+		{{fullName}}
 	</div>
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex'
 export default {
 	name: 'HelloWorld',
 	data() {
@@ -13,9 +16,20 @@ export default {
 		}
 	},
 	computed: {
-		count(){
-			return this.$store.state.count
-		}	
+		// count(){
+		// 	return this.$store.state.count
+		// },
+		// ...mapState(['count']),
+		// ...mapState({
+		// 	counter: 'count'
+		// }),
+		...mapState({
+			counter: (state) => state.count
+		}),
+		...mapGetters(['fullName'])
+		// fullName(){
+		// 	return this.$store.getters.fullName
+		// }
 	},
 	mounted () {
 		console.log(this.$store)
