@@ -33,10 +33,16 @@ export default {
 	},
 	mounted () {
 		console.log(this.$store)
+		// this.$store.state.count = 3  错误
+		// this.$store.commit('updateCount',{num: 3,num2: 'mutaions的第二个参数'})
+
 		let i = 0;
 		setInterval(()=>{
 			// 同步修改
-			this.$store.commit('updateCount',i++)
+			this.$store.commit('updateCount',{
+				num: i++,
+				num2: 'mutaions的第二个参数'
+			})
 		},1000)
 	}
 }
