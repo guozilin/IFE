@@ -12,7 +12,12 @@ Vue.config.productionTip = false
 Vue.use(Vuex)
 
 const store = createStore()
-
+// 动态注册一个模块
+store.registerModule('c', {
+	state: {
+		text: 'my name is module c' 
+	}
+})
 /* eslint-disable no-new */
 new Vue({
 	el: '#app',
