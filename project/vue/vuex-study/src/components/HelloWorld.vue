@@ -45,9 +45,6 @@ export default {
 		// textA(){
 		// 	return this.$store.state.a.text
 		// },
-
-
-		
 	},
 	mounted () {
 		console.log(this.$store)
@@ -97,6 +94,7 @@ export default {
 
 		this['a/updateCounter']()
 		// b 没有加命名空间 可以直接调用 
+		// this.updateModuleAtext()
 		this['b/updateModuleAtext']()
 
 	}
