@@ -23,6 +23,7 @@
     遍历与 set 一致
 }
 ```
+[Set语法](https://github.com/guozilin/documents/blob/master/document/ES6/set.md)
 
 # weakMap
 ```
