@@ -18,11 +18,14 @@
     map.clear()
 }
 ```
+```
 {
     遍历与 set 一致
 }
+```
 
 # weakMap
+```
 {
     // key 值必须是对象 与 Weakmap 类似
     let wsm = new WeakMap()
@@ -99,6 +102,7 @@
     
 
 }
+```
 能使用 map 不使用 array
 
 数据的唯一性  使用 set
