@@ -80,20 +80,18 @@ export default () => {
 			}
 		}
 	})
-	console.log(module.hot)
 
 	if(module.hot){
 		module.hot.accept([
 			'./state/state',
 			'./mutations/mutations',
 			'./getters/getters',
-			'./actions/actions',
-
+			'./actions/actions'
 		],()=>{
-			const newState = require('./state/state').default
+			const newState 	   = require('./state/state').default
 			const newMutations = require('./mutations/mutations').default
-			const newGetters = require('./getters/getters').default
-			const newActions = require('./actions/actions').default
+			const newGetters   = require('./getters/getters').default
+			const newActions   = require('./actions/actions').default
 
 			store.hotUpdate({
 				state: newState,

@@ -4,7 +4,7 @@ export default {
 	// 	state.count = num
 	// }
 	updateCount(state, {num,num2}) {
-		console.log(num2)
+		console.log(state,'1')
 		state.count = num
 	}
 
