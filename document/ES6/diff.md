@@ -1,5 +1,6 @@
 # Map
 
+```
 {
     // map 的 key 可以是任意数据结构
     let map = new Map()
@@ -7,7 +8,8 @@
     map.set(arr,456)
     map.get(arr)
 }
-
+```
+```
 {
     let map = new Map([['a',123],['b',456]])
     map.size
@@ -15,11 +17,16 @@
     map.delete(key)
     map.clear()
 }
+```
+```
 {
     遍历与 set 一致
 }
+```
+[Set语法](https://github.com/guozilin/documents/blob/master/document/ES6/set.md)
 
 # weakMap
+```
 {
     // key 值必须是对象 与 Weakmap 类似
     let wsm = new WeakMap()
@@ -96,6 +103,7 @@
     
 
 }
+```
 能使用 map 不使用 array
 
 数据的唯一性  使用 set
