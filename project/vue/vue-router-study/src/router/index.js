@@ -26,6 +26,9 @@ export default () => {
 		base: '/base/',
 		linkActiveClass: 'active-link', // 包含当前路由的上层 例如当前路由为 /page/123 ,name 如有路由 /page 则拥有 该样式
 		linkExactActiveClass: 'exact-active-link', // 当前匹配的 url 所对应的 class
+		scrollBehavior: (to,from,position)=>{
+			console.log(to,from)
+		}
 	})
 }
 // router 配置项
