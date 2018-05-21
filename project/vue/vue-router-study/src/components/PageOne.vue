@@ -14,13 +14,16 @@ export default {
 		}
 	},
 	props: {
-
+		id: String
 	},
 	components: {
 
 	},
 	methods: {
 
+	},
+	mounted(){
+		console.log(this.id)
 	}
 }
 </script>

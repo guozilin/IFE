@@ -25,8 +25,13 @@ export default () => {
 				component: PageOne
 			}] // 路由嵌套
 		}, {
-			path: '/page1',
-			component: PageOne
+			path: '/page/:id',
+			component: PageOne,
+			// props: true, // 可以在组建内直接拿到 props 参数
+			// props:{
+			// 	id: '456'
+			// }
+			props: (route) => ({id: route.params.id})
 		}, {
 			path: '/page2',
 			component: PageTwo

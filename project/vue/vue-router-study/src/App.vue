@@ -3,7 +3,7 @@
 		<img src="./assets/logo.png">
 		<br>
 		<router-link to="/app">Home</router-link>
-		<router-link to="/page1">page one</router-link>
+		<router-link to="/page/123">page one</router-link>
 		<router-link to="/page2">page two</router-link>
 		<!-- 全局页面切换动画 -->
 		<transition> 
@@ -37,7 +37,7 @@ a.exact-active-link{
 	color: darkcyan
 }
 .v-enter-active, .v-leave-active{
-	transition: opacity 1s
+	transition: opacity .5s
 }
 .v-enter, .v-enter-to{
 	opacity: 0;
