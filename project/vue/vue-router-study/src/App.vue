@@ -9,9 +9,9 @@
 		<transition> 
 			<router-view/>
 		</transition>
-		<footer>
+		<!-- <footer>
 		<router-view name="a" />
-		</footer>
+		</footer> -->
 	</div>
 </template>
 

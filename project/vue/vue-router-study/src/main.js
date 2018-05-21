@@ -6,6 +6,21 @@ import createRouter from './router'
 
 const router = createRouter()
 
+// 路由钩子  全局的 校验数据
+router.beforeEach((to, from, next) => {
+	//to and from are Route Object,next() must be called to resolve the hook}
+	console.log('before each',to)
+	next()
+})
+router.beforeResolve((to,form,next) =>{
+	console.log('before resolve')
+	next()
+})
+router.afterEach((to, form, next) => {
+	console.log('after each')
+})
+
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

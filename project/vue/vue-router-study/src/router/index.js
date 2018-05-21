@@ -15,10 +15,11 @@ export default () => {
 		}, {
 			path: '/app',
 			name: 'app', // 也可以根据 name 进行路由跳转  <router-link :to="{name: 'app'}"></router-link>
-			components: {
-				default: HelloWorld,
-				a: PageTwo
-			},
+			// components: {
+			// 	default: HelloWorld,
+			// 	a: PageTwo
+			// },
+			component: HelloWorld,
 			meta: {
 				title: '我是页面信息 title',
 				description: 'description'
