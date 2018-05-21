@@ -4,7 +4,6 @@
 		<h2>Essential Links</h2>
 		<h2>Ecosystem</h2>
 		<!-- <router-view/> -->
-		<div style="height: 1800px"></div>
 	</div>
 </template>
 

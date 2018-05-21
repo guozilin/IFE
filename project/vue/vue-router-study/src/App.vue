@@ -9,6 +9,9 @@
 		<transition> 
 			<router-view/>
 		</transition>
+		<footer>
+		<router-view name="a" />
+		</footer>
 	</div>
 </template>
 
@@ -27,6 +30,10 @@ export default {
 	color: #2c3e50;
 	margin-top: 60px;
 }
+/* footer{
+	position: absolute;
+	bottom: 0;
+} */
 a:visited,a,a:focus,a:hover {
 	color: #333;
 }
