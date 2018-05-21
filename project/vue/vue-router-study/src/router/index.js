@@ -24,10 +24,14 @@ export default () => {
 				title: '我是页面信息 title',
 				description: 'description'
 			}, // 保存页面信息 与路由无关的配置 都可以写在 meta 里 
-			children: [{
-				path: 'test',
-				component: PageOne
-			}] // 路由嵌套
+			// children: [{
+			// 	path: 'test',
+			// 	component: PageOne
+			// }], // 路由嵌套
+			beforeEnter(to,from,next){
+				console.log('before enter')
+				next()
+			}
 		}, {
 			path: '/page/:id',
 			component: PageOne,
@@ -45,7 +49,7 @@ export default () => {
 		linkActiveClass: 'active-link', // 包含当前路由的上层 例如当前路由为 /page/123 ,name 如有路由 /page 则拥有 该样式
 		linkExactActiveClass: 'exact-active-link', // 当前匹配的 url 所对应的 class
 		scrollBehavior: (to,from,savedPosition)=>{
-			console.log(to,from)
+			// console.log(to,from)
 			if(savedPosition){
 				return savedPosition
 			}else{

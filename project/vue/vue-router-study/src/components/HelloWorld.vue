@@ -14,6 +14,26 @@ export default {
 		return {
 			msg: 'Welcome to Your Vue.js App'
 		}
+	},
+	beforeRouteEnter(to, from, next) {
+		//does NOT have access to `this` component instance}
+		console.log('component before enter')
+		next(vm=>{
+			console.log(vm)
+		})
+	},
+	beforeRouteUpdate(to, from, next) {
+		// params 参数时 会触发
+		//has access to `this` component instance}
+		console.log('component before update')
+		next()
+	},
+	beforeRouteLeave(to, from, next) {
+		//has access to `this` component instance}
+		console.log('component before leave')
+		if(global.confirm('are you sure?')){
+			next()
+		}
 	}
 }
 </script>
