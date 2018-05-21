@@ -5,7 +5,10 @@
 		<router-link to="/app">Home</router-link>
 		<router-link to="/page1">page one</router-link>
 		<router-link to="/page2">page two</router-link>
-		<router-view/>
+		<!-- 全局页面切换动画 -->
+		<transition> 
+			<router-view/>
+		</transition>
 	</div>
 </template>
 
@@ -32,5 +35,11 @@ a.active-link{
 }
 a.exact-active-link{
 	color: darkcyan
+}
+.v-enter-active, .v-leave-active{
+	transition: opacity 1s
+}
+.v-enter, .v-enter-to{
+	opacity: 0;
 }
 </style>

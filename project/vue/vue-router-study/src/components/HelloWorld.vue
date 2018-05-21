@@ -3,6 +3,8 @@
 		<h1>{{ msg }}</h1>
 		<h2>Essential Links</h2>
 		<h2>Ecosystem</h2>
+		<!-- <router-view/> -->
+		<div style="height: 1800px"></div>
 	</div>
 </template>
 
@@ -21,15 +23,14 @@ export default {
 <style>
 h1,
 h2 {
-	font-weight: normal;
+  font-weight: normal;
 }
 ul {
-	list-style-type: none;
-	padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 li {
-	display: inline-block;
-	margin: 0 10px;
+  display: inline-block;
+  margin: 0 10px;
 }
-
 </style>

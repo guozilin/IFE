@@ -1,6 +1,7 @@
 <template>
 	<div class="one-page">
-		<h2>this is my first page </h2>
+		<h1>this is my first page </h1>
+		<div style="height: 1800px"></div>
 	</div>
 </template>
 
