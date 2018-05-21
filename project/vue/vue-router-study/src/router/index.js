@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import HelloWorld from '@/components/HelloWorld'
-import PageOne from '@/components/PageOne'
-import PageTwo from '@/components/PageTwo'
+// import HelloWorld from '@/components/HelloWorld'
+// import PageOne from '@/components/PageOne'
+// import PageTwo from '@/components/PageTwo'
 
 Vue.use(Router)
 
@@ -19,7 +19,8 @@ export default () => {
 			// 	default: HelloWorld,
 			// 	a: PageTwo
 			// },
-			component: HelloWorld,
+			component: () => import ('@/components/HelloWorld'),
+
 			meta: {
 				title: '我是页面信息 title',
 				description: 'description'
@@ -34,7 +35,8 @@ export default () => {
 			}
 		}, {
 			path: '/page/:id',
-			component: PageOne,
+			component: () => import ('@/components/PageOne'),
+
 			// props: true, // 可以在组建内直接拿到 props 参数
 			// props:{
 			// 	id: '456'
@@ -42,7 +44,9 @@ export default () => {
 			props: (route) => ({id: route.params.id})
 		}, {
 			path: '/page2',
-			component: PageTwo
+			// component: PageTwo
+			component: () => import ('@/components/PageTwo'),
+
 		}],
 		mode: 'history',
 		base: '/base/',
