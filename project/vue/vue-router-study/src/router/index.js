@@ -19,7 +19,8 @@ export default () => {
 			// 	default: HelloWorld,
 			// 	a: PageTwo
 			// },
-			component: () => import ('@/components/HelloWorld'),
+			component: () =>
+				import ('@/components/HelloWorld'),
 
 			meta: {
 				title: '我是页面信息 title',
@@ -29,35 +30,42 @@ export default () => {
 			// 	path: 'test',
 			// 	component: PageOne
 			// }], // 路由嵌套
-			beforeEnter(to,from,next){
+			beforeEnter(to, from, next) {
 				console.log('before enter')
 				next()
 			}
 		}, {
 			path: '/page/:id',
-			component: () => import ('@/components/PageOne'),
+			component: () =>
+				import ('@/components/PageOne'),
 
 			// props: true, // 可以在组建内直接拿到 props 参数
 			// props:{
 			// 	id: '456'
 			// }
-			props: (route) => ({id: route.params.id})
+			props: (route) => ({
+				id: route.params.id
+			})
 		}, {
 			path: '/page2',
 			// component: PageTwo
-			component: () => import ('@/components/PageTwo'),
+			component: () =>
+				import ('@/components/PageTwo'),
 
 		}],
 		mode: 'history',
 		base: '/base/',
 		linkActiveClass: 'active-link', // 包含当前路由的上层 例如当前路由为 /page/123 ,name 如有路由 /page 则拥有 该样式
 		linkExactActiveClass: 'exact-active-link', // 当前匹配的 url 所对应的 class
-		scrollBehavior: (to,from,savedPosition)=>{
+		scrollBehavior: (to, from, savedPosition) => {
 			// console.log(to,from)
-			if(savedPosition){
+			if (savedPosition) {
 				return savedPosition
-			}else{
-				return {x: 0, y: 0}
+			} else {
+				return {
+					x: 0,
+					y: 0
+				}
 			}
 		},
 		// parseQuery(query){

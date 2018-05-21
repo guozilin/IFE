@@ -22,7 +22,7 @@ export default {
 	methods: {
 
 	},
-	mounted(){
+	mounted() {
 		console.log(this.id)
 	},
 	beforeRouteEnter(to, from, next) {
@@ -42,7 +42,10 @@ export default {
 		next()
 	}
 }
+
 </script>
 
 <style scoped>
+
+
 </style>
