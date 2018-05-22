@@ -15,7 +15,7 @@ const store = createStore()
 // 动态注册一个模块
 store.registerModule('c', {
 	state: {
-		text: 'my name is module c' 
+		text: 'my name is module c'
 	}
 })
 /* eslint-disable no-new */
@@ -26,5 +26,43 @@ new Vue({
 	components: {
 		App
 	},
-	template: '<App/>'
+	template: '<App/>',
+	data() {
+		return {}
+	},
+	// 页面初始化 触发
+	beforeCreate() {
+		console.log(this,'beforeCreate')
+	},
+	// 页面初始化 触发
+	created(){
+		console.log(this,'created')
+	},
+	// 页面初始化 触发
+	beforeMount() {
+		console.log(this, 'beforeMount')
+	},
+	// 页面初始化 触发
+	mounted() {
+		console.log(this, 'mounted')
+	},
+	beforeUpdate() {
+		console.log(this, 'beforeUpdate')
+	},
+	updated() {
+		console.log(this, 'updated')
+	},
+	activated(){
+		console.log(this,'activated')
+	},
+	deactivated(){
+		console.log(this,'deactivated')
+	},
+	beforeDestroyed(){
+		console.log(this,'beforeDestroyed')
+	},
+	destroyed(){
+		console.log(this,'destroyed')
+	}
+	
 })

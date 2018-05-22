@@ -1,8 +1,7 @@
 <template>
 	<div class="hello">
 		{{counter}}
-		<br>
-		{{fullName}}
+		<br> {{fullName}}
 		<p>{{textA}}</p>
 		<p>{{textPlus}}</p>
 		<p>{{textC}}</p>
@@ -13,7 +12,7 @@
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
 	name: 'HelloWorld',
-	data() {
+	data () {
 		return {
 			msg: 'Welcome to Your Vue.js App'
 		}
@@ -28,9 +27,8 @@ export default {
 		// }),
 		...mapState({
 			counter: (state) => state.count,
-			textA: (state)=> state.a.text,
-			textC: (state)=> state.c.text
-
+			textA: (state) => state.a.text,
+			textC: (state) => state.c.text
 		}),
 		// ...mapGetters(['fullName']),
 		...mapGetters({
@@ -64,15 +62,15 @@ export default {
 		// 	num: 1,
 		// 	time: 2000
 		// })
-		
+
 	},
 	methods: {
-		...mapActions(['updateCountAsync','a/add','a/updateCounter','b/updateModuleAtext']),
+		...mapActions(['updateCountAsync', 'a/add', 'a/updateCounter', 'b/updateModuleAtext']),
 		// updateText 是子模块里的mutations vuex默认将mutations 放进全局的命名空间
 		// ...mapMutations(['updateCount','updateText']),
 		// 可以设置 modules 的 namespaced: true
-		...mapMutations(['updateCount','a/updateText'])
-		
+		...mapMutations(['updateCount', 'a/updateText'])
+
 	},
 	mounted () {
 		// this.updateCountAsync({
@@ -105,17 +103,17 @@ export default {
 <style scoped>
 h1,
 h2 {
-	font-weight: normal;
+  font-weight: normal;
 }
 ul {
-	list-style-type: none;
-	padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 li {
-	display: inline-block;
-	margin: 0 10px;
+  display: inline-block;
+  margin: 0 10px;
 }
 a {
-	color: #42b983;
+  color: #42b983;
 }
 </style>

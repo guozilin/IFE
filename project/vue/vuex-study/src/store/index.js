@@ -40,30 +40,40 @@ export default () => {
 		getters,
 		actions,
 		modules: {
-			a:{
+			a: {
 				namespaced: true,
-				state:{
+				state: {
 					text: 'this is module A'
 				},
 				mutations: {
-					updateText(state,str){
+					updateText(state, str) {
 						state.text = str
 					}
 				},
-				getters:{
-					textPlus(state,getters,rootState){
+				getters: {
+					textPlus(state, getters, rootState) {
 						return `${state.text}  ${rootState.b.text}`
 					}
 				},
-				actions:{
+				actions: {
 					// state commit rootState 指的是 ctx
 					// add(ctx){}
-					add({state,commit,rootState}){
-						commit('updateText','long long string')
+					add({
+						state,
+						commit,
+						rootState
+					}) {
+						commit('updateText', 'long long string')
 					},
-					updateCounter({commit}){
+					updateCounter({
+						commit
+					}) {
 						// 命名空间内 调用全局的方法
-						commit('updateCount',{num: 1000},{root: true})
+						commit('updateCount', {
+							num: 1000
+						}, {
+							root: true
+						})
 					}
 				}
 			},
@@ -73,25 +83,29 @@ export default () => {
 					text: 'this is module B'
 				},
 				actions: {
-					updateModuleAtext({commit}){
-						commit('a/updateText', 'module b update a text',{root: true})
+					updateModuleAtext({
+						commit
+					}) {
+						commit('a/updateText', 'module b update a text', {
+							root: true
+						})
 					}
 				}
 			}
 		}
 	})
 
-	if(module.hot){
+	if (module.hot) {
 		module.hot.accept([
 			'./state/state',
 			'./mutations/mutations',
 			'./getters/getters',
 			'./actions/actions'
-		],()=>{
-			const newState 	   = require('./state/state').default
+		], () => {
+			const newState = require('./state/state').default
 			const newMutations = require('./mutations/mutations').default
-			const newGetters   = require('./getters/getters').default
-			const newActions   = require('./actions/actions').default
+			const newGetters = require('./getters/getters').default
+			const newActions = require('./actions/actions').default
 
 			store.hotUpdate({
 				state: newState,
