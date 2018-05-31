@@ -14,38 +14,46 @@ export default () => {
 			redirect: '/app'
 		}, {
 			path: '/app',
-			name: 'app', 
-			component: () => import ('@/components/HelloWorld'),
+			name: 'app', // 也可以根据 name 进行路由跳转  <router-link :to="{name: 'app'}"></router-link>
+			// components: {
+			// 	default: HelloWorld,
+			// 	a: PageTwo
+			// },
+			component: () =>
+				import ('@/components/HelloWorld'),
+
 			meta: {
 				title: '我是页面信息 title',
 				description: 'description'
-			}, 
+			}, // 保存页面信息 与路由无关的配置 都可以写在 meta 里 
+			// children: [{
+			// 	path: 'test',
+			// 	component: PageOne
+			// }], // 路由嵌套
 			beforeEnter(to, from, next) {
 				console.log('before enter')
 				next()
 			}
 		}, {
 			path: '/page/:id',
-			name: 'page',
-			component: () => import ('@/components/PageTwo'),
+			component: () =>
+				import ('@/components/PageOne'),
+
+			// props: true, // 可以在组建内直接拿到 props 参数
+			// props:{
+			// 	id: '456'
+			// }
 			props: (route) => ({
 				id: route.params.id
 			})
 		}, {
-			path: '/page/:id/:level',
-			name: 'pagetwo',			
+			path: '/page2',
+			// component: PageTwo
 			component: () =>
 				import ('@/components/PageTwo'),
-			props: (route) => ({
-				id: route.params.id,
-				level: route.params.level
-			}),
-			beforeEnter(to,from, next){
-				// console.log(to,from,'routye')
-				next()
-			}
-		}],
 
+		}],
+		mode: 'history',
 		base: '/base/',
 		linkActiveClass: 'active-link', // 包含当前路由的上层 例如当前路由为 /page/123 ,name 如有路由 /page 则拥有 该样式
 		linkExactActiveClass: 'exact-active-link', // 当前匹配的 url 所对应的 class
@@ -60,7 +68,14 @@ export default () => {
 				}
 			}
 		},
-		
+		// parseQuery(query){
+
+		// },
+		// stringifyQuery(obj) {
+
+		// }
+		fallback: true // 浏览器不支持前端的 history 路由时，自动转为 hash 路由
+
 	})
 }
 // router 配置项
@@ -77,4 +92,3 @@ export default () => {
 */
 
 // 1 vue-router 默认使用 hash 路由 （浏览器 SEO 不会抓取）
-

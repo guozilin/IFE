@@ -3,9 +3,7 @@
 		<img src="./assets/logo.png">
 		<br>
 		<router-link to="/app">Home</router-link>
-		<router-link to="/page/123">page one</router-link>
 		<router-link to="/page/456">page 456</router-link>
-		<router-link to="/page2">page two</router-link>
 		<!-- 全局页面切换动画 -->
 		<transition> 
 			<router-view/>
