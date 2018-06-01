@@ -8,9 +8,10 @@ export default () => {
 			level: 'spot'
 		},
 		mutations: {
-			// updateCount(state, num) {
-			// 	state.count = num
-			// }
+			updateParams(state, {id,level}) {
+				state.id = id
+				state.level = level
+			}
 		}
 	})
 }

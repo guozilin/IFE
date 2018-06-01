@@ -7,7 +7,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-import { mapState } from 'vuex'
+import { mapMutations } from 'vuex'
 
 export default {
 	name: 'PageTwo',
@@ -21,18 +21,27 @@ export default {
 		level: String
 	},
 	components: {
-		...({
-			ids: (state)=>state.id,
-			levels: (state)=> state.level
+		// ...mapState({
+		// 	ids: (state)=>state.id,
+		// 	levels: (state)=> state.level
+		// })
+	},
+	methods:{
+		...mapMutations(['updateParams'])
+	},
+	// mounted () {
+	// 	console.log(this.$route)
+	// 	console.log(this.id)
+	// 	console.log(this.level)
+	// },
+	beforeRouteEnter (to, from, next) {
+		next((vm)=> {
+			vm.updateParams({id: vm.id, level: vm.level})
+			console.log(vm)
 		})
 	},
-	mounted () {
-		console.log(this.$route)
-		console.log(this.id)
-		console.log(this.level)
-	},
 	beforeRouteUpdate(to, from, next) {
-		this.ids = this.id
+		this.updateParams({id: this.id, level: this.level})
 		// console.log(to,from)
 		// params 参数时 会触发
 		//has access to `this` component instance}
