@@ -44,6 +44,9 @@ export default () => {
 				// console.log(to,from,'routye')
 				next()
 			}
+		},{
+			path: '/third',
+			component: () => import ('@/components/third'),
 		}],
 
 		base: '/base/',
