@@ -1,6 +1,6 @@
 <template>
   <div class="parent-component">
-	  <array-com></array-com>
+	  <array-com :news="newsList"></array-com>
   </div>
 </template>
 
@@ -12,6 +12,16 @@ export default {
 	},
 	components: {
 		ArrayCom
+	},
+	data(){
+		return {
+			newsList: []
+		}
+	},
+	mounted () {
+		setTimeout(()=>{
+			this.newsList = ['哈哈','嘿嘿','呦呦','窃窃']
+		},5000)
 	}
 }
 
