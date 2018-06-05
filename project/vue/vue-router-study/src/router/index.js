@@ -15,7 +15,7 @@ export default () => {
 		}, {
 			path: '/app',
 			name: 'app', 
-			component: () => import ('@/components/HelloWorld'),
+			component: () => import ('@/components/ParentComponent'),
 			meta: {
 				title: '我是页面信息 title',
 				description: 'description'
