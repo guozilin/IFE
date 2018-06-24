@@ -9,5 +9,52 @@
 <body>
 	<h2>check form</h2>
 	<script src="./check.js"></script>
+	<script>
+		let Person = function(name){
+			this.name = name
+		}
+		// 实例访问不到 
+		Person.printName = function(){
+			console.log(this.name)
+		}
+		Person.isMember = false
+		
+		Person.prototype.alertName = function(){
+			alert(this.name)
+		}
+		const lisi = new Person('lisi')
+		// console.log(lisi)
+		// Person.printName()
+		// lisi.alertName()
+
+		let Book = (function(){
+			let bookNum = 0
+			function checkBook(name) {
+				console.log(this.name)
+			}
+			return function(id,newName,newPrice){
+				let name,price
+				function checkID(id){
+					console.log(id)
+				}
+				this.getName = function(){
+					console.log(name)
+				}
+				this.id = id
+				this.copy = function(){}
+				bookNum++
+				if(bookNum > 100){
+					throw new Error('我们仅出版100本书')
+				}
+			}
+		})();
+		Book.prototype = {
+			isJsBook: false,
+			display: function(){
+				console.log('no display')
+			}
+		}
+		console.log(new Book('123','new name','$99'))
+	</script>
 </body>
 </html>
