@@ -2,6 +2,9 @@ import React from 'react'
 import logo from './logo.svg';
 import './Header.css'
 
+
+const a = 'popop'
+
 export default class Header extends React.Component {
 	render(){
 		return (
