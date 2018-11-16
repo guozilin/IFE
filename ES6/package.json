@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/guozilin/documents/issues"
   },
-  "homepage": "https://github.com/guozilin/documents#readme"
+  "homepage": "https://github.com/guozilin/documents#readme",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
 }
